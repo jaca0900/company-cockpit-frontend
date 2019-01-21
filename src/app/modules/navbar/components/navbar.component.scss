@@ -1,0 +1,19 @@
+@import '../../shared/variables';
+
+.fc-navbar-row {
+  background-color: $secondary-dark-color;
+  color: white;
+}
+
+.fc-menu {
+  .fc-menu-item {
+    color: white;
+    padding-left: 16px;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .fc-menu-item:active {
+    font-weight: 900;
+  }
+}
