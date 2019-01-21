@@ -15,16 +15,25 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   canActivate(): boolean {
-    this.guard = !StorageService.getItem('User');
+    this.guard = this.isTruhy();
+
+    console.log(this.guard);
 
     this.authService.isLoggedIn.subscribe(val => {
       this.guard = val;
     });
 
+    console.log(this.guard);
+
     if (!this.guard) {
+      console.log("DO NAVIGATE", [CONSTANTS.MAIN_ROUTES.LOGIN]);
       this.router.navigate([CONSTANTS.MAIN_ROUTES.LOGIN]);
     }
 
     return this.guard;
+  }
+
+  private isTruhy() {
+    return StorageService.getItem('User') !== null;
   }
 }

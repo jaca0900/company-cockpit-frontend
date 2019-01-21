@@ -5,10 +5,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 
 import { AuthService } from './auth.service';
 import { StorageService } from '../storage/storage.service';
-import { LoginResponseModel } from '../../../../../mocks/models/login-response.model';
-import { LogoutResponseModel } from '../../../../../mocks/models/logout-response.model';
-import { ListComponent } from '../../../forecast/components/list/list.component';
-import { ForecastModule } from '../../../forecast/forecast.module';
+import {LoginResponseModel} from '../../../../../mocks/models/login-response.model';
+import {LogoutResponseModel} from '../../../../../mocks/models/logout-response.model';
 
 describe('AuthService', () => {
   const username = 'forecast';
@@ -23,8 +21,7 @@ describe('AuthService', () => {
       imports: [
         RouterTestingModule,
         HttpClientModule,
-        HttpClientTestingModule,
-        ForecastModule
+        HttpClientTestingModule
       ]
     });
 
@@ -43,8 +40,8 @@ describe('AuthService', () => {
 
   describe('#login', () => {
     it('should return an Observable<LoginResponse>', () => {
-      service.login('a', 'b').subscribe(res => {
-        expect(res).toEqual(LoginResponseModel);
+      service.login('seed', 'seed').then(res => {
+        expect(res.completeName).toEqual('seed');
       });
 
       const req = httpMock.expectOne('http://localhost:8000/login');
@@ -54,13 +51,10 @@ describe('AuthService', () => {
   });
 
   describe('#logout', () => {
-    it('should return an Observable<LogoutResponse>', () => {
-      service.logout().subscribe(res => {
-        expect(res).toEqual(LogoutResponseModel);
+    it('should return an Promise<Boolean>', () => {
+      service.logout().then(res => {
+        expect(res).toEqual(true);
       });
-      const req = httpMock.expectOne('http://localhost:8000/logout');
-      req.flush(LogoutResponseModel);
-      expect(req.request.method).toBe('GET');
     });
   });
 });
