@@ -22,10 +22,16 @@
               "src/angularApp/favicon.ico",
               "src/angularApp/assets"
             ],
+            "scripts": [
+                "node_modules/chart.js/dist/Chart.js",
+                "node_modules/quill/dist/quill.js"
+            ],
             "styles": [
+              "node_modules/primeng/resources/themes/nova-light/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css",
               "src/angularApp/styles.css"
             ],
-            "scripts": []
           },
           "configurations": {
             "production": {

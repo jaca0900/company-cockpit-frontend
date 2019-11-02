@@ -1,9 +1,40 @@
 @import 'modules/shared/shared';
 
 .modal-xxl {
-  width: 90%;
+    width: 90%;
 }
 
 .modal-dialog {
-  width: 95%;
+    width: 95%;
+}
+
+.ui-g {
+    height: 100%;
+}
+
+#menu {
+    padding: 0;
+    background-color: #1E223D;
+}
+
+#menu-header {
+    width: 100%; 
+    text-align: center;
+}
+
+#menu-header  {
+    h3 {
+        padding: 0;
+        margin: 1rem 0;
+        color: white;
+        text-transform: uppercase;
+        font-weight: 500;
+        letter-spacing: .1rem;
+    }
+}
+
+#container {
+    width: 100%; 
+    height: 92.5vh; 
+    padding: 1.5rem;
 }
