@@ -1,18 +1,9 @@
 <div class="ui-g">
     <div class="ui-g-3" id="menu">
-        <div id="menu-header">
-            <h3>Company Cockpit</h3>
-        </div>
-        <p-panelMenu [multiple]="false" [model]="menu"></p-panelMenu>
+        <app-global-menu></app-global-menu>
     </div>
     <div class="ui-g-9" style="padding: 0; margin: 0;">
-        <p-toolbar>
-            <div class="ui-toolbar-group-right">
-                <button pButton type="button" icon="pi pi-minus" (click)="minimize()"></button>
-                <button pButton type="button" icon="pi pi-window-maximize" (click)="maximize()"></button>
-                <button pButton type="button" icon="pi pi-times" (click)="close()"></button>
-            </div>
-        </p-toolbar>
+        <app-global-header></app-global-header>
         <div id="container">
             <router-outlet></router-outlet>
         </div>
