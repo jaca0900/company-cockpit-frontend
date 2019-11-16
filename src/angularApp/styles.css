@@ -96,6 +96,11 @@ body .ui-panelmenu .ui-panelmenu-header:not(.ui-state-active) > a:hover {
     color: unset;
 }
 
+body app-global-header .ui-button:enabled:focus {
+    outline: unset!important;
+    box-shadow: unset!important;
+}
+
 #inner-container {
     width: 100%; 
     height: 100%; 
