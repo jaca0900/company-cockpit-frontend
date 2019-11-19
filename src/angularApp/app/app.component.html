@@ -1,2 +1,11 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<div class="ui-g">
+    <div class="ui-g-3" id="menu">
+        <app-global-menu></app-global-menu>
+    </div>
+    <div class="ui-g-9" style="padding: 0; margin: 0;">
+        <app-global-header></app-global-header>
+        <div id="container">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
