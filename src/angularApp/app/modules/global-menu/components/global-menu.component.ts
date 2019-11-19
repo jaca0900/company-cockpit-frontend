@@ -17,6 +17,7 @@ export class GlobalMenuComponent implements OnInit {
             {
                 label: 'Dashboard',
                 icon: 'pi pi-pw pi-th-large',
+                url: '/home'
             }, {
                 label: 'Contractors',
                 icon: 'pi pi-fw pi-users',
