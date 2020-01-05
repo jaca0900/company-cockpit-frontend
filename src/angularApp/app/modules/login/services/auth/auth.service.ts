@@ -24,17 +24,24 @@ export class AuthService {
   ) { }
 
   login(username: string, pass: string): Promise<LoginResponse> {
+    return this.http.post<{ [key: string]: any }>('http://localhost:8000/user/login',{
+        login: username,
+        password: pass
+      }).toPromise()
+        .then(res => {
+          const loginRes: LoginResponse = {
+            appId: res.id,
+            completeName: res.login
+          };
+          console.log(res);
 
-    if (username === 'seed' && pass === 'seed') {
-      const loginRes: LoginResponse = {
-        appId: new uuid(),
-        completeName: username
-      };
+          return loginRes;
+        })
+        .catch(err => {
+          console.error(err);
 
-      return Promise.resolve(loginRes);
-    } else {
-      return Promise.reject('INVALID CREDENTIALS');
-    }
+          return Promise.reject('INVALID CREDENTIALS');
+        });
   }
 
   logout(): Promise<Boolean> {

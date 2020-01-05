@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   exports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule {}

@@ -29,8 +29,11 @@ export class LoginComponent implements OnInit {
   doLogin() {
     this.authService.login(this.login, this.pass)
       .then(logged => {
+        console.log(logged);
+
         this.authService.isLoggedIn.next(true);
         StorageService.setItem('user', logged);
+
         this.router.navigate([CONSTANTS.MAIN_ROUTES.HOME]);
         this.status = 200;
       })

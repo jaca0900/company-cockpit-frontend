@@ -1,34 +1,20 @@
-<div class="col-md-4 offset-md-4">
-  <form
-    ngNativeValidate
+<form class="ui-g-4 ui-md-4"
+  ngNativeValidate
     (submit)="doLogin()"
-    class="login-form needs-validation">
-
-    <div class="form-row">
-      <div class="form-grup col-sm-12 mb-3 spacing-bottom">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">@</span>
-          </div>
-          <input type="text" name="login" [(ngModel)]="login" class="form-control" placeholder="Username" id="username" required>
+    class="login-form">
+    <div class="ui-g-12 ui-md-12 no-padding">
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+            <input type="text" name="login" [(ngModel)]="login" pInputText placeholder="Username">
         </div>
-      </div>
     </div>
 
-    <div class="form-row">
-      <div class="form-grup col-sm-12 mb-3">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Password</span>
-          </div>
-          <input type="password" name="pass" [(ngModel)]="pass" class="form-control" placeholder="User pass" id="password" required>
+    <div class="ui-g-12 ui-md-12 no-padding">
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon">Password</span>
+            <input type="text" name="pass" [(ngModel)]="pass" pInputText placeholder="password" id="pass" required>
         </div>
-      </div>
-    </div>
-    <div class="invalid-feedback" [ngClass]="status === 500 ? 'invalid': ''">
-      Wrong password or username
     </div>
 
-    <button type="submit" class="btn btn-primary">Login</button>
-  </form>
-</div>
+    <button pButton type="submit" label="Login"></button>
+</form>
