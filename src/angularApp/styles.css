@@ -12,9 +12,12 @@ body {
     -webkit-app-region: drag;
 }
 
+button {
+    background-color: #1E223D !important;
+}
 
 body .ui-toolbar {
-    height: auto; 
+    height: 8vh; 
     background-color: rgba(33,33,33,0.7); 
     border: unset;
     border-radius: unset;
@@ -107,4 +110,19 @@ body app-global-header .ui-button:enabled:focus {
     background-color: rgb(33,33,33); 
     border-radius: .75rem;
     padding: 1rem;
+}
+
+body .ui-inputgroup .ui-inputgroup-addon {
+    background-color: #222222;
+    color: #FFFFFF;
+}
+
+input {
+    background-color: #222222;
+    color:white;
+    border-left: none;
+}
+
+input::placeholder {
+    color: #FFFFFF;
 }

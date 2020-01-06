@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { AuthService } from '../services/auth/auth.service';
 import { CONSTANTS } from '../../shared/constants';
-import { StorageService } from '../services/storage/storage.service';
+import { StorageService } from '../../shared/services/storage/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         console.log(logged);
 
         this.authService.isLoggedIn.next(true);
-        StorageService.setItem('user', logged);
+        StorageService.setItem('User', logged);
 
         this.router.navigate([CONSTANTS.MAIN_ROUTES.HOME]);
         this.status = 200;

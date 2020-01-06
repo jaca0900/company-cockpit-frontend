@@ -4,7 +4,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { AuthService } from './auth.service';
-import { StorageService } from '../storage/storage.service';
+import { StorageService } from '../../../shared/services/storage/storage.service';
 import {LoginResponseModel} from '../../../../../mocks/models/login-response.model';
 import {LogoutResponseModel} from '../../../../../mocks/models/logout-response.model';
 

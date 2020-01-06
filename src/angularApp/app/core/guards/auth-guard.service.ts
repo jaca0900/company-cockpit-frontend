@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { AuthService } from '../../modules/login/services/auth/auth.service';
-import { StorageService } from '../../modules/login/services/storage/storage.service';
+import { StorageService } from '../../modules/shared/services/storage/storage.service';
 import { CONSTANTS } from '../../modules/shared/constants';
 
 @Injectable({

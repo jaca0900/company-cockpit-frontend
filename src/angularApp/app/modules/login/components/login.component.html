@@ -1,7 +1,7 @@
-<form class="ui-g-4 ui-md-4"
-  ngNativeValidate
+<form  ngNativeValidate
     (submit)="doLogin()"
     class="login-form">
+    
     <div class="ui-g-12 ui-md-12 no-padding">
         <div class="ui-inputgroup">
             <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
@@ -12,7 +12,7 @@
     <div class="ui-g-12 ui-md-12 no-padding">
         <div class="ui-inputgroup">
             <span class="ui-inputgroup-addon">Password</span>
-            <input type="text" name="pass" [(ngModel)]="pass" pInputText placeholder="password" id="pass" required>
+            <input type="password" name="pass" [(ngModel)]="pass" pInputText placeholder="password" id="pass" required>
         </div>
     </div>
 
