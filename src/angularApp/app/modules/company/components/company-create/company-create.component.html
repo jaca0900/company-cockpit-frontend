@@ -1,8 +1,7 @@
 <form ngNativeValidate
     (submit)="createCompany()">
-
     <div class="ui-g">
-        <div class="ui-g-6 ui-md-6 no-padd-margin">
+        <div class="ui-g-4 ui-md-4 no-padd-margin">
             <div class="ui-g-12 ui-md-12 no-padd-margin">
                 <label>Nip</label>
             </div>
@@ -11,13 +10,18 @@
             </div>
         </div>
 
-        <div class="ui-g-6 ui-md-6 no-padd-margin">
+        <div class="ui-g-4 ui-md-4 no-padd-margin">
             <div class="ui-g-12 ui-md-12 no-padd-margin">
                 <label>Name</label>
             </div>
+
             <div class="ui-g-12 ui-md-12 no-padd-margin">
                 <input type="text" name="Name" [(ngModel)]="company.companyName" pInputText>
             </div>
+        </div>
+
+        <div class="ui-g-4 ui-md-4 no-padd-margin">
+            <p-checkbox label="Own company" name="isOwnedByUser" binary="true" [(ngModel)]="company.isOwnedByUser"></p-checkbox>
         </div>
     </div>
     
@@ -29,4 +33,6 @@
             <textarea rows="5" cols="30" name="address" [(ngModel)]="company.address" pInputTextarea></textarea>
         </div>
     </div>
+
+    <button pButton type="submit" label="Save"></button>
 </form>

@@ -1,17 +1,146 @@
 <form ngNativeValidate
     (submit)="createInvoice()">
-    
-    <div class="ui-g-6 ui-md-6 no-padding">
-        <div class="ui-inputgroup">
-            <span class="ui-inputgroup-addon">This is a form</span>
-            <input type="text" name="login" pInputText placeholder="This is a form">
+
+    <div class="ui-g">
+        <div class="ui-g-6 ui-md-6 no-padd-margin">
+            <h3>Seller company</h3>
+        </div>
+        <div class="ui-g-6 ui-md-6 no-padd-margin">
+            <h3>Buyer company</h3>
         </div>
     </div>
 
-    <div class="ui-g-6 ui-md-6 no-padding">
-        <div class="ui-inputgroup">
-            <span class="ui-inputgroup-addon">With 2 Columns for data input and viewing</span>
-            <input type="password" name="pass" pInputText placeholder="With 2 Columns for data input and viewing" id="pass" required>
+    <div class="ui-g">
+        <div class="ui-g-6 ui-md-6 no-padd-margin">
+            <div class="ui-g-12 ui-md-12 no-padd-margin">
+                <label>Nip</label>
+            </div>
+            <div class="ui-g-12 ui-md-12 no-padd-margin">
+                <input type="text" name="login" [(ngModel)]="seller.nip" pInputText>
+            </div>
+        </div>
+
+        <div class="ui-g-6 ui-md-6 no-padd-margin">
+            <div class="ui-g-12 ui-md-12 no-padd-margin">
+                <label>Nip</label>
+            </div>
+            <div class="ui-g-12 ui-md-12 no-padd-margin">
+                <input type="text" name="login" [(ngModel)]="buyer.nip" pInputText>
+            </div>
         </div>
     </div>
+
+    <div class="ui-g">
+        <div class="ui-g-6 ui-md-6 no-padd-margin">
+            <div class="ui-g-12 ui-md-12 no-padd-margin">
+                <label>Name</label>
+            </div>
+            <div class="ui-g-12 ui-md-12 no-padd-margin">
+                <input type="text" name="Name" [(ngModel)]="seller.companyName" pInputText>
+            </div>
+        </div>
+
+        <div class="ui-g-6 ui-md-6 no-padd-margin">
+            <div class="ui-g-12 ui-md-12 no-padd-margin">
+                <label>Name</label>
+            </div>
+            <div class="ui-g-12 ui-md-12 no-padd-margin">
+                <input type="text" name="Name" [(ngModel)]="buyer.companyName" pInputText>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-g">
+        <div class="ui-g-6 ui-md-6 no-padd-margin">
+            <div class="ui-g-12 ui-md-12 no-padd-margin">
+                <label>Address</label>
+            </div>
+            <div class="ui-g-12 ui-md-12 no-padd-margin">
+                <textarea rows="5" cols="30" name="address" [(ngModel)]="seller.address" pInputTextarea></textarea>
+            </div>
+        </div>
+
+        <div class="ui-g-6 ui-md-6 no-padd-margin">
+            <div class="ui-g-12 ui-md-12 no-padd-margin">
+                <label>Address</label>
+            </div>
+            <div class="ui-g-12 ui-md-12 no-padd-margin">
+                <textarea rows="5" cols="30" name="address" [(ngModel)]="buyer.address" pInputTextarea></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-g">
+        <h3>Invoice Contents</h3>
+    </div>
+
+    <div class="ui-g">
+        <div class="ui-g-12 ui-md-12 no-padding">
+            <p-toolbar>
+                <div class="ui-toolbar-group-left ui-g-10 ui-md-10">
+                    <div class="ui-g-3 ui-md-3 no-padd-margin">
+                        <div class="ui-g-12 ui-md-12 no-padd-margin">
+                            <label>Product name</label>
+                        </div>
+                        <div class="ui-g-12 ui-md-12 no-padd-margin">
+                            <input type="text" name="name" [(ngModel)]="product.name" pInputText>
+                        </div>
+                    </div>
+                    
+                    <div class="ui-g-3 ui-md-3 no-padd-margin">
+                        <div class="ui-g-12 ui-md-12 no-padd-margin">
+                            <label>Unit price</label>
+                        </div>
+                        <div class="ui-g-12 ui-md-12 no-padd-margin">
+                            <input type="number" name="unit price" [(ngModel)]="product.unitPrice" pInputText>
+                        </div>
+                    </div>
+                    <div class="ui-g-3 ui-md-3 no-padd-margin">
+                        <div class="ui-g-12 ui-md-12 no-padd-margin">
+                            <label>Number of units</label>
+                        </div>
+                        <div class="ui-g-12 ui-md-12 no-padd-margin">
+                            <input type="number" name="unit price" [(ngModel)]="product.units" pInputText>
+                        </div>
+                    </div>
+                    <div class="ui-g-4 ui-md-3 no-padd-margin">
+                        <div class="ui-g-12 ui-md-12 no-padd-margin">
+                            <label>Vat percentage 0 if none</label>
+                        </div>
+                        <div class="ui-g-12 ui-md-12 no-padd-margin">
+                            <input type="number" name="unit price" [(ngModel)]="product.vat" pInputText>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ui-toolbar-group-right ui-g-2 ui-md-2">
+                    <button pButton type="button" label="Add Product" icon="pi pi-plus" (click)="addProduct()"></button>
+                </div>
+            </p-toolbar>
+            <p-table [value]="products" class="common-table" [paginator]="true" [rows]="10">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Product name</th>
+                        <th>Unit price</th>
+                        <th>Units</th>
+                        <th>Vat value</th>
+                        <th>Net</th>
+                        <th>Gross</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+                        <td>{{product.name}}</td>
+                        <td>{{product.unitPrice}}</td>
+                        <td>{{product.units}}</td>
+                        <td>{{product.vat * 100}} %</td>
+                        <td>{{product.unitPrice * product.units}}</td>
+                        <td>{{product.unitPrice * product.units * (1 + product.vat)}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+
+    <button pButton type="submit" label="Save"></button>
 </form>

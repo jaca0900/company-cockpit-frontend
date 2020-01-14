@@ -1,15 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import {TableModule} from 'primeng/table';
 import { CompanyRouter } from './company.router'
-import { ButtonModule } from 'primeng/button';
 
 import { CompanyListComponent } from './components/company-list/company-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { CompanyCreateComponent } from './components/company-create/company-create.component';
 import { CompanyEditComponent } from './components/company-edit/company-edit.component';
 import { CompanyDetailsComponent } from './components/company-details/company-details.component';
-import {InputTextareaModule} from 'primeng/inputtextarea';
+
+import {TableModule} from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ToolbarModule } from 'primeng/toolbar';
+import {CheckboxModule} from 'primeng/checkbox';
 
 @NgModule({
     declarations: [
@@ -21,9 +24,11 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     imports: [
       CommonModule,
       CompanyRouter,
+      CheckboxModule,
       ButtonModule,
       TableModule,
       InputTextareaModule,
+      ToolbarModule,
       SharedModule,
       ButtonModule
     ],

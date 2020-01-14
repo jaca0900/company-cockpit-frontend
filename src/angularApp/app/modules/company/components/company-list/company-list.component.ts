@@ -21,24 +21,32 @@ export class CompanyListComponent extends GenericListComponent<ICompany> impleme
   }
 
   ngOnInit() {
-    this.companyService.getUserCompanies(123654)
+    this.companyService.getUserCompanies()
     .pipe(
       catchError(err => {
         console.error('An error occured', err);
 
         return of(err);
       })
-    ).subscribe((companies) => this.userCompanies = companies)
+    ).subscribe((companies) => {
+
+      this.all = this.total = companies;
+      this.viewSimple();
+    });
   }
 
   public goToDetails(companyId) {
     console.log(`To details view ${companyId}`);
-    this.router.navigate(['/company/details']);
+    this.router.navigate(['/company/details', companyId]);
   }
 
   public goToEdit(companyId) {
     console.log(`To edit view ${companyId}`);
-    this.router.navigate(['/company/edit']);
+    this.router.navigate(['/company/edit', companyId]);
+  }
+
+  public goToAdd() {
+    this.router.navigate(['/company/add']);
   }
 
   public goToInvoice(companyId) {

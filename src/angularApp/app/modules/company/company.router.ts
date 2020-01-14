@@ -8,9 +8,9 @@ import { CompanyListComponent } from './components/company-list/company-list.com
 
 const childRoutes: Routes = [
   { path: '', component: CompanyListComponent },
-  { path: 'edit', component: CompanyEditComponent },
-  { path: 'details', component: CompanyDetailsComponent },
-  { path: 'create', component: CompanyCreateComponent }
+  { path: 'add', component: CompanyCreateComponent },
+  { path: 'edit/:companyId', component: CompanyEditComponent },
+  { path: 'details/:companyId', component: CompanyDetailsComponent }
 ];
 
 @NgModule({

@@ -7,6 +7,7 @@ export class GenericListComponent<CollectionType> {
   displayData: CollectionType[];
   all: CollectionType[];
   total: CollectionType[];
+  searchValue: string;
 
   constructor () {}
 
@@ -39,7 +40,8 @@ export class GenericListComponent<CollectionType> {
   }
 
   search (value) {
-    const valRegexp = new RegExp(value, 'i');
+    const valRegexp = new RegExp(value || this.searchValue, 'i');
+
     this.all = this.total.filter(forecast => {
 
       const checkArray = this.transformObjectIntroArray(forecast);
@@ -49,7 +51,12 @@ export class GenericListComponent<CollectionType> {
         }
       }
     });
+
     this.pageChange(1);
+  }
+
+  viewSimple() {
+    this.displayData = this.all;
   }
 
   pageChange(newPage: number) {
