@@ -49,7 +49,7 @@ body .ui-panelmenu .ui-panelmenu-content,
 body .ui-panelmenu .ui-panelmenu-header.ui-state-active > a:focus,
 body .ui-panelmenu .ui-panelmenu-header.ui-state-active > a  {
     background-color: #1E223D;
-    border: unset!important;
+    border: unset !important;
 }
 
 body .ui-panelmenu .ui-panelmenu-panel {
@@ -120,7 +120,9 @@ body .ui-inputgroup .ui-inputgroup-addon {
 input {
     background-color: #222222;
     color:white;
-    border-left: none;
+    /* border-left: none;
+    border-top: none;
+    border-right: none; */
 }
 
 input::placeholder {

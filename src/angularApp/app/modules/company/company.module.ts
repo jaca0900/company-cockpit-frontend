@@ -9,7 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CompanyCreateComponent } from './components/company-create/company-create.component';
 import { CompanyEditComponent } from './components/company-edit/company-edit.component';
 import { CompanyDetailsComponent } from './components/company-details/company-details.component';
-
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 @NgModule({
     declarations: [
@@ -23,6 +23,9 @@ import { CompanyDetailsComponent } from './components/company-details/company-de
       CompanyRouter,
       ButtonModule,
       TableModule,
+      InputTextareaModule,
+      SharedModule,
+      ButtonModule
     ],
     exports: [
       CompanyListComponent

@@ -9,13 +9,19 @@ import { ICompany } from '../model/company.interface';
 })
 export class CompanyCreateComponent implements OnInit {
   // TODO: add company model
-  public userCompanies: ICompany[]
+  public company: ICompany
 
   constructor(private companyService: CompanyService) {
   }
 
   ngOnInit() {
-   console.log('INIT CREATE');
+    this.company = {
+      id: null,
+      nip: '',
+      address: '',
+      companyName: '',
+    };
+    console.log('INIT CREATE');
   }
 
   createCompany() {
