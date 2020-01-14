@@ -13,17 +13,15 @@
 }
 
 #menu {
-    height: 100vh;
+    height: 92vh;
     padding: 0;
     background-color: #1E223D;
 }
 
 #container {
-    width: 100%; 
-    height: 92.5vh; 
+    height: 92vh; 
     padding: 1.5rem;
-}
-
-app-global-menu {
-    height: 100vh;
+    background-color: #222222;
+    color: white;
+    -webkit-app-region: no-drag;
 }

@@ -17,11 +17,11 @@ export class GlobalMenuComponent implements OnInit {
             {
                 label: 'Dashboard',
                 icon: 'pi pi-pw pi-th-large',
-                url: '/home'
+                routerLink: '/home'
             }, {
                 label: 'Contractors',
                 icon: 'pi pi-fw pi-users',
-                url: '/contractors',
+                routerLink: '/company',
             }, {
                 label: 'Invoices',
                 icon: 'pi pi-fw pi-inbox',

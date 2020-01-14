@@ -1,11 +1,11 @@
 <div class="ui-g">
-    <div class="ui-g-3" id="menu">
+    <div class="ui-g-12 ui-g-nopad">
+        <app-global-header></app-global-header>
+    </div>
+    <div id="menu" class="ui-g-3 ui-g-nopad">
         <app-global-menu></app-global-menu>
     </div>
-    <div class="ui-g-9" style="padding: 0; margin: 0;">
-        <app-global-header></app-global-header>
-        <div id="container">
-            <router-outlet></router-outlet>
-        </div>
+    <div id="container" class="ui-g-9 ui-g-nopad">
+        <router-outlet></router-outlet>
     </div>
 </div>

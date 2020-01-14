@@ -9,8 +9,10 @@ import {HomeComponent} from './modules/home/coponents/home.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', canActivate: [AuthGuard], loadChildren: './modules/home/home.module#HomeModule'},
   { path: 'login', loadChildren: './modules/login/login.module#LoginModule' },
+  { path: 'home', canActivate: [AuthGuard], loadChildren: './modules/home/home.module#HomeModule'},
+  { path: 'company', canActivate: [AuthGuard], loadChildren: './modules/company/company.module#CompanyModule'},
+  { path: 'invoice', canActivate: [AuthGuard], loadChildren: './modules/invoice/invoice.module#InvoiceModule' },
   { path: '**', component: PageNotFoundComponent}
 ];
 

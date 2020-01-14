@@ -1,4 +1,18 @@
+@import "../../shared/shared";
+
+#menu-header {
+  -webkit-user-select: none;
+}
+
+#menu-header  {
+  span {
+      padding: 1vh;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: .1rem;
+  }
+}
+
 button {
-    background-color: #1E223D!important;
-    border: unset;
+  border: none !important;
 }
