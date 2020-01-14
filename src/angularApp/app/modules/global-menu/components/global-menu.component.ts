@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { remote } from 'electron';
+// import { remote } from 'electron';
 
 @Component({
     selector: 'app-global-menu',
@@ -33,15 +33,15 @@ export class GlobalMenuComponent implements OnInit {
     }
 
     close(): void {
-        remote.getCurrentWindow().close();
+        // remote.getCurrentWindow().close();
     }
 
     minimize(): void {
-        remote.getCurrentWindow().minimize();
+        // remote.getCurrentWindow().minimize();
     }
 
     maximize(): void {
-        remote.getCurrentWindow().maximize();
+        // remote.getCurrentWindow().maximize();
     }
 
 }
