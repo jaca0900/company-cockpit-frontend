@@ -1,33 +1,53 @@
-<div class="ui-g">
+<p-panel header="Company data" [toggleable]="true">
     <div class="ui-g">
-        <div class="ui-g-6 ui-md-6 no-padd-margin">
+        <div class="ui-g-6 ui-md-6 no-padding">
             <div class="ui-g-12 ui-md-12 no-padd-margin">
                 <label>Nip</label>
             </div>
             <div class="ui-g-12 ui-md-12 no-padd-margin">
-                <input type="text" name="login" [(ngModel)]="company.nip" pInputText>
+                <input type="text" disabled="true" name="login" [(ngModel)]="company.nip" pInputText>
             </div>
         </div>
-
-        <div class="ui-g-6 ui-md-6 no-padd-margin">
+    
+        <div class="ui-g-6 ui-md-6 no-padding">
             <div class="ui-g-12 ui-md-12 no-padd-margin">
                 <label>Name</label>
             </div>
             <div class="ui-g-12 ui-md-12 no-padd-margin">
-                <input type="text" name="Name" [(ngModel)]="company.companyName" pInputText>
+                <input type="text" disabled="true" name="Name" [(ngModel)]="company.companyName" pInputText>
             </div>
         </div>
     </div>
 
     <div class="ui-g">
-        <div class="ui-g-12 ui-md-12 no-padd-margin">
+        <div class="ui-g-12 ui-md-12">
             <label>Address</label>
         </div>
         <div class="ui-g-12 ui-md-12 no-padd-margin">
-            <textarea rows="5" cols="30" name="address" [(ngModel)]="company.address" pInputTextarea></textarea>
+            <textarea rows="5" disabled="true" cols="30" name="address" [(ngModel)]="company.address" pInputTextarea></textarea>
         </div>
     </div>
-</div>
-<div class="ui-g">
-    <span class="ui-inputgroup-addon">Here if we so desire will nbe a list of all the invoices the user has genereated for this comapny</span>
-</div>
+</p-panel>
+
+<p-panel header="{{company.isOwnedByUser ? 'Sold to' : 'Bought from'}} invoices" [toggleable]="true">
+    <div class="ui-g">
+        <p-table [value]="displayData" class="common-table" [paginator]="true" [rows]="10">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Seller</th>
+                    <th>Buyer</th>
+                    <th>Net</th>
+                    <th>Gross</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-invoice>
+                <tr>
+                    <td>{{invoice.seller.company_name}}</td>
+                    <td>{{invoice.buyer.company_name}}</td>
+                    <td>{{invoice.totalNetto}}</td>
+                    <td>{{invoice.totalBrutto}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</p-panel>

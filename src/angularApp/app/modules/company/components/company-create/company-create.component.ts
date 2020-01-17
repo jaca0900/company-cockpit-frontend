@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CompanyService } from '../sevices/company.service';
+import { CompanyService } from '../../sevices/company.service';
 import { ICompany } from '../model/company.interface';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';

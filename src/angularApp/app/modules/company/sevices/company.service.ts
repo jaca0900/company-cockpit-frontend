@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment as env } from '../../../../../environments/environment';
-import { ICompany } from '../model/company.interface'
-import { StorageService } from '../../../shared/services/storage/storage.service';
+import { environment as env } from '../../../../environments/environment';
+import { ICompany } from '../components/model/company.interface'
+import { StorageService } from '../../shared/services/storage/storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class CompanyService {
   getUserCompanies() {
     const user = StorageService.getItem('User');
 
-    return this.http.get<ICompany>(`${env.apiAddress}/company/byUserId/${user.appId}`);
+    return this.http.get<ICompany[]>(`${env.apiAddress}/company/byUserId/${user.appId}`);
   }
 
   saveUserContractor(company: ICompany) {

@@ -1,0 +1,130 @@
+<p-panel header="Invoice data">
+
+    <div class="ui-g">
+        <div class="ui-g-4 ui-md-4 no-padd-margin">
+            <div class="ui-g-12 ui-md-12 no-padd-margin">
+                <label>Invoice number</label>
+            </div>
+            <input type="text" disabled="true" name="invoiceNumber" [(ngModel)]="invoice.invoiceNumber" pInputText>
+        </div>
+
+        <div class="ui-g-4 ui-md-4 no-padd-margin">
+            <div class="ui-g-12 ui-md-12 no-padd-margin">
+                <label fro="pay date">Sell Date</label>
+            </div>
+            <p-calendar name="payDate" disabled="true" [(ngModel)]="invoice.sellDate"></p-calendar>
+        </div>
+
+        <div class="ui-g-4 ui-md-4 no-padd-margin">
+            <div class="ui-g-12 ui-md-12 no-padd-margin">
+                <label fro="pay date">Creation Date</label>
+            </div>
+            <p-calendar name="payDate" disabled="true" [(ngModel)]="invoice.creationDate"></p-calendar>
+        </div>
+    </div>
+
+    <div class="ui-g">
+        <div class="ui-g-6 ui-md-6">
+            <p-panel [toggleable]="true">
+                <p-header>
+                    Seller company
+                </p-header>
+                <div class="ui-g">
+                    <div class="ui-g-6 ui-md-6">
+                        <div class="ui-g-12 ui-md-12">
+                            <label>Nip</label>
+                        </div>
+                        <input type="text" disabled="true" name="sellerNip" [(ngModel)]="seller.nip" pInputText>
+                        <div class="ui-g-12 ui-md-12">
+                            <label>Name</label>
+                        </div>
+                        <input type="text" disabled="true" name="sellerName" [(ngModel)]="seller.companyName" pInputText>
+                    </div>
+                    <div class="ui-g-6 ui-md-6 no-padd-margin">
+                        <div class="ui-g-12 ui-md-12 no-padd-margin">
+                            <label>Address</label>
+                        </div>
+                        <textarea disabled="true" rows="5" cols="30" name="sellerAddress" [(ngModel)]="seller.address" pInputTextarea></textarea>
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+
+        <div class="ui-g-6 ui-md-6">
+            <p-panel [toggleable]="true">
+                <p-header>
+                    Buyer company
+                </p-header>
+                <div class="ui-g">
+                    <div class="ui-g-6 ui-md-6">
+                        <div class="ui-g-12 ui-md-12">
+                            <label>Nip</label>
+                        </div>
+                        <input type="text" disabled="true" name="buyerNip" [(ngModel)]="buyer.nip" pInputText>
+                        <div class="ui-g-12 ui-md-12">
+                            <label>Name</label>
+                        </div>
+                        <input disabled="true" type="text" name="buyerName" [(ngModel)]="buyer.companyName" pInputText>
+                    </div>
+                    <div class="ui-g-6 ui-md-6 no-padd-margin">
+                        <div class="ui-g-12 ui-md-12 no-padd-margin">
+                            <label>Address</label>
+                        </div>
+                        <textarea disabled="true" rows="5" cols="30" name="sellerAddress" [(ngModel)]="buyer.address" pInputTextarea></textarea>
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+
+    <p-panel header="Invoice Contents" [toggleable]="true">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-12 no-padding">
+                <p-table [value]="invoiceProducts" class="common-table" [paginator]="true" [rows]="10">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Product name</th>
+                            <th>Unit price</th>
+                            <th>Units</th>
+                            <th>Vat value</th>
+                            <th>Net</th>
+                            <th>Gross</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-invoiceProduct>
+                        <tr>
+                            <td>{{invoiceProduct.product.name}}</td>
+                            <td>{{invoiceProduct.product.unit}}</td>
+                            <td>{{invoiceProduct.units}}</td>
+                            <td>{{invoiceProduct.product.vat * 100}} %</td>
+                            <td>{{invoiceProduct.product.unit * invoiceProduct.units}}</td>
+                            <td>{{invoiceProduct.product.unit * invoiceProduct.units * (1 + invoiceProduct.product.vat)}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </p-panel>
+
+    
+    <p-panel header="Invoice Footer" [toggleable]="true">
+        <div class="ui-g">
+            <div class="ui-g-4 ui-md-4">
+                <p-dropdown disabled="true" [options]="methods" name="paymentMethod" [(ngModel)]="invoice.paymentMethod" placeholder="select payment method" optionLabel="name"></p-dropdown>
+            </div>
+            <div class="ui-g-4 ui-md-4 no-padd-margin">
+                <div class="ui-g-12 ui-md-12 no-padd-margin">
+                    <label>account number</label>
+                </div>
+
+                <input disabled="true" type="text" disabled="{{ invoice.paymentMethod.value != 'transfer' }}" name="accountNumber" [(ngModel)]="invoice.accountNumber" pInputText>
+            </div>
+            <div class="ui-g-2 ui-md-2">
+            <label fro="pay date">Payment Date</label>
+            </div>
+            <div class="ui-g-2 ui-md-2">
+                <p-calendar disabled="true" name="payDate" [(ngModel)]="invoice.payDate"></p-calendar>
+            </div>
+        </div>
+    </p-panel>
+</p-panel>

@@ -13,6 +13,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToolbarModule } from 'primeng/toolbar';
 import {CheckboxModule} from 'primeng/checkbox';
+import {PanelModule} from 'primeng/panel';
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import {CheckboxModule} from 'primeng/checkbox';
       InputTextareaModule,
       ToolbarModule,
       SharedModule,
-      ButtonModule
+      ButtonModule,
+      PanelModule
     ],
     exports: [
       CompanyListComponent

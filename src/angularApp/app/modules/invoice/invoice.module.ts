@@ -9,11 +9,21 @@ import {TableModule} from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToolbarModule } from 'primeng/toolbar';
+import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
+import {DialogModule} from 'primeng/dialog';
+import { InvoiceListComponent } from './components/invoice-list/invoice-list.component';
+import {PanelModule} from 'primeng/panel';
+import { InvoiceEditComponent } from './components/invoice-edit/invoice-edit.component';
+import { InvoiceDetailsComponent } from './components/invoice-details/invoice-details.component';
 
 
 @NgModule({
     declarations: [
-      InvoiceCreateComponent
+      InvoiceCreateComponent,
+      InvoiceListComponent,
+      InvoiceEditComponent,
+      InvoiceDetailsComponent
     ],
     imports: [
       CommonModule,
@@ -22,10 +32,17 @@ import { ToolbarModule } from 'primeng/toolbar';
       ButtonModule,
       TableModule,
       InputTextareaModule,
-      ToolbarModule
+      ToolbarModule,
+      DropdownModule,
+      CalendarModule,
+      DialogModule,
+      PanelModule
     ],
     exports: [
-      InvoiceCreateComponent
+      InvoiceCreateComponent,
+      InvoiceListComponent,
+      InvoiceEditComponent,
+      InvoiceDetailsComponent
     ],
     providers: [],
     bootstrap: [],

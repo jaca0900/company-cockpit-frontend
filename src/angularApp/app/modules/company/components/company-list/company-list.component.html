@@ -5,8 +5,8 @@
         </div>
         
         <div class="ui-toolbar-group-right">
-            <input type="text" name="searchInput" [(ngModel)]="searchValue" pInputText>
-            <button pButton type="button" label="Search" icon="pi pi-search" (click)='search()'></button>
+                <input class="no-width" type="text" name="searchInput" [(ngModel)]="searchValue" pInputText>
+                <button pButton type="button" label="Search" icon="pi pi-search" (click)='search()'></button>
         </div>
     </p-toolbar>
     <p-table [value]="displayData" class="common-table" [paginator]="true" [rows]="10">
@@ -34,3 +34,4 @@
         </ng-template>
     </p-table>
 </div>
+

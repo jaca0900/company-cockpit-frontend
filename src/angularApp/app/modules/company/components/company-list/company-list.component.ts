@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import { remote } from 'electron';
-import { CompanyService } from '../sevices/company.service';
+import { CompanyService } from '../../sevices/company.service';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ICompany } from '../model/company.interface';
@@ -50,6 +50,6 @@ export class CompanyListComponent extends GenericListComponent<ICompany> impleme
   }
 
   public goToInvoice(companyId) {
-    this.router.navigate(['/invoice/create']);
+    this.router.navigate(['/invoice/create', companyId]);
   }
 }

@@ -24,6 +24,7 @@ export class GlobalMenuComponent implements OnInit {
                 routerLink: '/company',
             }, {
                 label: 'Invoices',
+                routerLink: '/invoice',
                 icon: 'pi pi-fw pi-inbox',
             }, {
                 label: 'Settings',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CompanyService } from '../sevices/company.service';
+import { CompanyService } from '../../sevices/company.service';
 import { ICompany } from '../model/company.interface';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';

@@ -19,9 +19,10 @@
 }
 
 #container {
-    height: 92vh; 
+    height: 92vh;
     padding: 1.5rem;
     background-color: #222222;
     color: white;
     -webkit-app-region: no-drag;
+    overflow: auto;
 }
