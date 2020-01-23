@@ -98,6 +98,9 @@ export class InvoiceEditComponent implements OnInit {
       .subscribe(
         (invoice) => {
           this.invoice = invoice[0];
+          this.invoice.payDate = new Date(this.invoice.payDate);
+          this.invoice.sellDate = new Date(this.invoice.sellDate);
+          this.invoice.creationDate = new Date(this.invoice.creationDate);
           this.invoiceProducts = this.invoice.invoiceProduct;
           this.seller = this.invoice.seller;
           this.buyer = this.invoice.buyer;

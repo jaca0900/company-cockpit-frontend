@@ -52,8 +52,9 @@ export class InvoiceCreateComponent implements OnInit {
       isOwnedByUser: false
     };
 
-    this.sellers = [this.seller];
-    this.buyers = [this.buyer];
+    this.sellers = [];
+    this.buyers = [];
+
     this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
         paramCompanyId = parseInt(params.get('companyId'));
@@ -85,7 +86,7 @@ export class InvoiceCreateComponent implements OnInit {
     this.invoiceProduct = {
       product: {
         name: '',
-        unit: 0,
+        unitPrice: 0,
         vat: 0.0
       },
       units: 0,
@@ -130,7 +131,7 @@ export class InvoiceCreateComponent implements OnInit {
       this.invoiceProducts.push(product);
 
       const totals = this.invoiceProducts.reduce((acc, invoiceProduct) => {
-        acc.net += invoiceProduct.units * invoiceProduct.product.unit;
+        acc.net += invoiceProduct.units * invoiceProduct.product.unitPrice;
         acc.gross += acc.net * (1 + invoiceProduct.product.vat);
 
         return acc;
@@ -146,7 +147,7 @@ export class InvoiceCreateComponent implements OnInit {
       this.invoiceProduct = {
         product: {
           name: '',
-          unit: 0,
+          unitPrice: 0,
           vat: 0.0
         },
         units: 0,
