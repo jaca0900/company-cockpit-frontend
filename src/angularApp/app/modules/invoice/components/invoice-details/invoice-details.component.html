@@ -10,16 +10,16 @@
 
         <div class="ui-g-4 ui-md-4 no-padd-margin">
             <div class="ui-g-12 ui-md-12 no-padd-margin">
-                <label fro="pay date">Sell Date</label>
+                <label>Sell Date</label>
             </div>
-            <p-calendar name="payDate" disabled="true" [(ngModel)]="invoice.sellDate"></p-calendar>
+            <p-calendar name="sellDate" disabled="true" [(ngModel)]="invoice.sellDate"></p-calendar>
         </div>
 
         <div class="ui-g-4 ui-md-4 no-padd-margin">
             <div class="ui-g-12 ui-md-12 no-padd-margin">
-                <label fro="pay date">Creation Date</label>
+                <label>Creation Date</label>
             </div>
-            <p-calendar name="payDate" disabled="true" [(ngModel)]="invoice.creationDate"></p-calendar>
+            <p-calendar name="sellDate" disabled="true" [(ngModel)]="invoice.creationDate"></p-calendar>
         </div>
     </div>
 
@@ -126,5 +126,6 @@
                 <p-calendar disabled="true" name="payDate" [(ngModel)]="invoice.payDate"></p-calendar>
             </div>
         </div>
+        <button type="button" (click)="generatePdf()" pButton label="get invoice document"></button>
     </p-panel>
 </p-panel>

@@ -5,6 +5,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { InvoiceService } from '../../services/invoice.service';
 import { of } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-invoice-edit',
@@ -32,7 +33,8 @@ export class InvoiceEditComponent implements OnInit {
   constructor(
     private companyService: CompanyService,
     private route: ActivatedRoute,
-    private invoiceService: InvoiceService) {}
+    private invoiceService: InvoiceService,
+    private messageService: MessageService) {}
 
   ngOnInit() {
     this.invoiceProduct = {
@@ -98,10 +100,11 @@ export class InvoiceEditComponent implements OnInit {
       .subscribe(
         (invoice) => {
           this.invoice = invoice[0];
+          this.invoice.paymentMethod = this.methods.find((method) => method.value === this.invoice.paymentMethod);
           this.invoice.payDate = new Date(this.invoice.payDate);
           this.invoice.sellDate = new Date(this.invoice.sellDate);
           this.invoice.creationDate = new Date(this.invoice.creationDate);
-          this.invoiceProducts = this.invoice.invoiceProduct;
+          this.invoiceProducts = this.invoice.invoiceProducts;
           this.seller = this.invoice.seller;
           this.buyer = this.invoice.buyer;
         },
@@ -118,9 +121,13 @@ export class InvoiceEditComponent implements OnInit {
 
     this.invoiceService.saveInvoice(this.invoice)
     .subscribe((res) => {
+      this.messageService.add({severity:'success', summary: 'Success Message', detail:'Invoice saved'});
       console.log(res);
+    },
+    (error) => {
+      this.messageService.add({severity:'error', summary: 'Error Message', detail:'Error during invoice saving'});
+      console.error(error);
     });
-    console.log(this.invoice);
   }
 
   addProduct() {

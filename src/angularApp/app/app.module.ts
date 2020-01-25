@@ -8,6 +8,9 @@ import { CardModule } from 'primeng/card';
 import { GlobalMenuModule } from './modules/global-menu/global-menu.module'
 import { GlobalHeaderModule } from './modules/global-header/global-header.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -20,8 +23,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         CardModule,
         GlobalMenuModule,
         GlobalHeaderModule,
+        ToastModule
     ],
-    providers: [],
+    providers: [MessageService],
     bootstrap: [
         AppComponent,
     ]

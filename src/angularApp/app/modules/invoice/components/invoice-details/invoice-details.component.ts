@@ -4,6 +4,9 @@ import { CompanyService } from '../../../company/sevices/company.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { InvoiceService } from '../../services/invoice.service';
+import pdfMake from 'pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-invoice-details',
@@ -91,5 +94,12 @@ export class InvoiceDetailsComponent implements OnInit {
         (err) => {
           console.log('Hmmmm', err);
         });
+  }
+
+  public generatePdf() {
+    const documentDefinition = { content: 'This is an sample PDF printed with pdfMake' };
+    const pdf = pdfMake.createPdf(documentDefinition);
+    console.log(pdf);
+    pdf.download();
   }
 }

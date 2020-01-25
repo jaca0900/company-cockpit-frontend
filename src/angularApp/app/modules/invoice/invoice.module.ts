@@ -11,9 +11,10 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToolbarModule } from 'primeng/toolbar';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
-import {DialogModule} from 'primeng/dialog';
+import { DialogModule } from 'primeng/dialog';
 import { InvoiceListComponent } from './components/invoice-list/invoice-list.component';
-import {PanelModule} from 'primeng/panel';
+import { PanelModule } from 'primeng/panel';
+
 import { InvoiceEditComponent } from './components/invoice-edit/invoice-edit.component';
 import { InvoiceDetailsComponent } from './components/invoice-details/invoice-details.component';
 

@@ -40,7 +40,8 @@
     "tslib": "^1.10.0",
     "uuid": "^3.3.3",
     "wait-on": "3.3.0",
-    "zone.js": "^0.10.2"
+    "zone.js": "^0.10.2",
+    "pdfmake": "*"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.803.15",

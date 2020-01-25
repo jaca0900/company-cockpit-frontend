@@ -13,16 +13,16 @@
 
             <div class="ui-g-4 ui-md-4 no-padd-margin">
                 <div class="ui-g-12 ui-md-12 no-padd-margin">
-                    <label fro="pay date">Sell Date</label>
+                    <label>Sell Date</label>
                 </div>
-                <p-calendar name="payDate" [(ngModel)]="invoice.sellDate"></p-calendar>
+                <p-calendar name="SellDate" [(ngModel)]="invoice.sellDate"></p-calendar>
             </div>
 
             <div class="ui-g-4 ui-md-4 no-padd-margin">
                 <div class="ui-g-12 ui-md-12 no-padd-margin">
-                    <label fro="pay date">Creation Date</label>
+                    <label>Creation Date</label>
                 </div>
-                <p-calendar name="payDate" [(ngModel)]="invoice.creationDate"></p-calendar>
+                <p-calendar name="createDate" [(ngModel)]="invoice.creationDate"></p-calendar>
             </div>
         </div>
 
@@ -102,6 +102,7 @@
                                     <input type="number" name="unit price" [(ngModel)]="invoiceProduct.product.unitPrice" pInputText>
                                 </div>
                             </div>
+
                             <div class="ui-g-3 ui-md-3 no-padd-margin">
                                 <div class="ui-g-12 ui-md-12 no-padd-margin">
                                     <label>Number of units</label>
@@ -110,7 +111,8 @@
                                     <input type="number" name="unit price" [(ngModel)]="invoiceProduct.units" pInputText>
                                 </div>
                             </div>
-                            <div class="ui-g-4 ui-md-3 no-padd-margin">
+
+                            <div class="ui-g-3 ui-md-3 no-padd-margin">
                                 <div class="ui-g-12 ui-md-12 no-padd-margin">
                                     <label>Vat percentage 0 if none</label>
                                 </div>
@@ -165,7 +167,7 @@
                     <input type="text" disabled="{{ invoice.paymentMethod.value != 'transfer' }}" name="accountNumber" [(ngModel)]="invoice.accountNumber" pInputText>
                 </div>
                 <div class="ui-g-2 ui-md-2">
-                <label fro="pay date">Payment Date</label>
+                <label>Payment Date</label>
                 </div>
                 <div class="ui-g-2 ui-md-2">
                     <p-calendar name="payDate" [(ngModel)]="invoice.payDate"></p-calendar>
