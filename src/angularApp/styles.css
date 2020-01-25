@@ -104,6 +104,40 @@ body app-global-header .ui-button:enabled:focus {
     box-shadow: unset!important;
 }
 
+body .ui-dialog .ui-dialog-titlebar {
+    background-color: #636363; 
+    color: white;
+}
+
+body .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-icon {
+    color: white !important;
+}
+
+body .ui-dialog .ui-dialog-content {
+    background-color: #222222;
+    color: white !important;
+    width: 350px;
+    height: 40vh;
+}
+
+body .ui-paginator {
+    background-color: #222222 !important;
+    color: white !important;
+    border: unset !important;
+}
+
+body .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active {
+    background-color: #2d3356;
+}
+
+body .ui-paginator .ui-paginator-pages .ui-paginator-page:not(.ui-state-active):hover {
+    color: #333333 !important;
+}
+
+body .ui-paginator .ui-paginator-pages .ui-paginator-page {
+    color: white !important;
+}
+
 #inner-container {
     width: 100%; 
     height: 100%; 
@@ -119,7 +153,8 @@ body .ui-inputgroup .ui-inputgroup-addon {
 
 input {
     background-color: #222222;
-    color:white;
+    color: #ffffff !important;
+    width: 80%;
     /* border-left: none;
     border-top: none;
     border-right: none; */
@@ -127,4 +162,55 @@ input {
 
 input::placeholder {
     color: #FFFFFF;
+}
+
+body .ui-inputtext {
+    width: 100%;
+    color: #ffffff !important;
+    background-color: #222222;
+}
+
+body .ui-inputtext:enabled:hover:not(.ui-state-error) {
+    border-color: #636363;
+}
+
+body .ui-datepicker {
+    color: #ffffff !important;
+    background-color: #222222;
+}
+
+body .ui-datepicker .ui-datepicker-header {
+    background-color: #323131;
+    color: #ffffff;
+}
+
+body .ui-datepicker table td > a, body .ui-datepicker table td > span {
+    color: #ffffff;
+}
+
+body .ui-datepicker:not(.ui-state-disabled) table td a:not(.ui-state-active):not(.ui-state-highlight):hover {
+    color: #333333;
+}
+
+body .ui-button {
+    border-color: #FFFFFF !important;
+}
+
+body .ui-panel {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+body .ui-panel .ui-panel-content {
+    background-color: #222222 !important;
+    color: #ffffff !important;
+}
+
+body .ui-panel .ui-panel-titlebar {
+    background-color: #636363 !important;
+    color: #ffffff !important;
+}
+
+body .ui-panel .ui-panel-titlebar .ui-panel-titlebar-icon {
+    color: #ffffff !important;
 }

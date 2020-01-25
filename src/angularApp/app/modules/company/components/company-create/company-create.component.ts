@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CompanyService } from '../sevices/company.service';
+import { CompanyService } from '../../sevices/company.service';
 import { ICompany } from '../model/company.interface';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-company-create',
@@ -20,11 +22,21 @@ export class CompanyCreateComponent implements OnInit {
       nip: '',
       address: '',
       companyName: '',
+      isOwnedByUser: false
     };
-    console.log('INIT CREATE');
   }
 
   createCompany() {
-    console.log('CRATE COMPANY');
+    this.companyService.saveUserContractor(this.company)
+      .pipe(
+        catchError(err => {
+          console.error('An error occured', err);
+
+          return of(err);
+        })
+      ).subscribe((result) => {
+        alert('Success');
+        console.log(result);
+      });
   }
 }

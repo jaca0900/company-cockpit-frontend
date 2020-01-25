@@ -3,4 +3,5 @@ export interface ICompany {
   companyName: string;
   address: string;
   nip: string;
+  isOwnedByUser: boolean;
 }
