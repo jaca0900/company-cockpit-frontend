@@ -4,6 +4,8 @@ import { CompanyService } from '../../../company/sevices/company.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { InvoiceService } from '../../services/invoice.service';
+import { MessageService } from 'primeng/api';
+import { PdfConverterService } from '../../services/pdf-converter.service';
 
 @Component({
   selector: 'app-invoice-create',
@@ -31,7 +33,8 @@ export class InvoiceCreateComponent implements OnInit {
   constructor(
     private companyService: CompanyService,
     private route: ActivatedRoute,
-    private invoiceService: InvoiceService) {}
+    private invoiceService: InvoiceService,
+    private messageService: MessageService) {}
 
   ngOnInit() {
     let paramCompanyId;
@@ -113,9 +116,13 @@ export class InvoiceCreateComponent implements OnInit {
 
     this.invoiceService.saveInvoice(this.invoice)
     .subscribe((res) => {
+      this.messageService.add({severity:'success', summary: 'Success Message', detail:'Invoice saved'});
       console.log(res);
+    },
+    (error) => {
+      this.messageService.add({severity:'error', summary: 'Error Message', detail:'Error during invoice saving'});
+      console.error(error);
     });
-    console.log(this.invoice);
   }
 
   addProduct() {
@@ -171,5 +178,11 @@ export class InvoiceCreateComponent implements OnInit {
 
   closeBuyerDialog() {
     this.showBuyer = false;
+  }
+
+  public generatePdf() {
+    const pdf = PdfConverterService.invoiceToPDF(this.invoice);
+    console.log(pdf);
+    pdf.download();
   }
 }

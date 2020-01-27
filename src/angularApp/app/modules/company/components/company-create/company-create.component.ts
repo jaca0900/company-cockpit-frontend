@@ -3,6 +3,7 @@ import { CompanyService } from '../../sevices/company.service';
 import { ICompany } from '../model/company.interface';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-company-create',
@@ -13,8 +14,9 @@ export class CompanyCreateComponent implements OnInit {
   // TODO: add company model
   public company: ICompany
 
-  constructor(private companyService: CompanyService) {
-  }
+  constructor(
+    private companyService: CompanyService,
+    private messageService: MessageService) {}
 
   ngOnInit() {
     this.company = {
@@ -28,15 +30,13 @@ export class CompanyCreateComponent implements OnInit {
 
   createCompany() {
     this.companyService.saveUserContractor(this.company)
-      .pipe(
-        catchError(err => {
-          console.error('An error occured', err);
-
-          return of(err);
-        })
-      ).subscribe((result) => {
-        alert('Success');
-        console.log(result);
+    .subscribe((res) => {
+        this.messageService.add({severity:'success', summary: 'Success Message', detail:'Company saved'});
+        console.log(res);
+      },
+      (error) => {
+        this.messageService.add({severity:'error', summary: 'Error Message', detail:'Error during company saving'});
+        console.error(error);
       });
   }
 }

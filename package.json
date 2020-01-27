@@ -41,7 +41,8 @@
     "uuid": "^3.3.3",
     "wait-on": "3.3.0",
     "zone.js": "^0.10.2",
-    "pdfmake": "*"
+    "pdfmake": "*",
+    "moment": "^2.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.803.15",

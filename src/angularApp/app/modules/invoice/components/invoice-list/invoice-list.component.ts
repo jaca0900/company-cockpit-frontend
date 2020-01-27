@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 import { GenericListComponent } from '../../../shared/components/list/generic.list.component';
 import { Router } from '@angular/router';
 import { InvoiceService } from '../../services/invoice.service';
+import { PdfConverterService } from '../../services/pdf-converter.service';
 
 @Component({
   selector: 'app-company-list',
@@ -44,5 +45,23 @@ export class InvoiceListComponent extends GenericListComponent<{ [key: string]: 
 
   public goToAdd() {
     this.router.navigate(['/invoice/create']);
+  }
+
+  public generatePdf(invoiceId) {
+    this.invoiceService.getInvoiceById(invoiceId)
+      .subscribe(
+        (invoice) => {
+          const invoiceDoc = invoice[0];
+          invoiceDoc.payDate = new Date(invoiceDoc.payDate);
+          invoiceDoc.sellDate = new Date(invoiceDoc.sellDate);
+          invoiceDoc.creationDate = new Date(invoiceDoc.creationDate);
+
+          const pdf = PdfConverterService.invoiceToPDF(invoiceDoc);
+          console.log(pdf);
+          pdf.download();
+        },
+        (err) => {
+          console.log('Hmmmm', err);
+        });
   }
 }

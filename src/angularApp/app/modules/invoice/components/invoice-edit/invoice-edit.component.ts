@@ -6,6 +6,7 @@ import { switchMap } from 'rxjs/operators';
 import { InvoiceService } from '../../services/invoice.service';
 import { of } from 'rxjs';
 import { MessageService } from 'primeng/api';
+import { PdfConverterService } from '../../services/pdf-converter.service';
 
 @Component({
   selector: 'app-invoice-edit',
@@ -183,5 +184,11 @@ export class InvoiceEditComponent implements OnInit {
 
   closeBuyerDialog() {
     this.showBuyer = false;
+  }
+
+  public generatePdf() {
+    const pdf = PdfConverterService.invoiceToPDF(this.invoice);
+    console.log(pdf);
+    pdf.download();
   }
 }

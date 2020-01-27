@@ -3,6 +3,7 @@ import { CompanyService } from '../../sevices/company.service';
 import { ICompany } from '../model/company.interface';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-company-edit',
@@ -16,7 +17,7 @@ export class CompanyEditComponent implements OnInit {
   constructor(
     private companyService: CompanyService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private messageService: MessageService) {
   }
 
   ngOnInit() {
@@ -42,9 +43,13 @@ export class CompanyEditComponent implements OnInit {
 
   public updateCompany() {
     this.companyService.updateContractor(this.company)
-    .subscribe((result) => {
-      alert('Success');
-      console.log(result);
-    }, (err) => console.error('An error occured', err));
+    .subscribe((res) => {
+      this.messageService.add({severity:'success', summary: 'Success Message', detail:'Company saved'});
+      console.log(res);
+    },
+    (error) => {
+      this.messageService.add({severity:'error', summary: 'Error Message', detail:'Error during company saving'});
+      console.error(error);
+    });
   }
 }

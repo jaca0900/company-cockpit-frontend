@@ -28,6 +28,7 @@
                 <td>
                     <button pButton type="button" icon="pi pi-eye" (click)="goToDetails(invoiceDocument.id)"></button>
                     <button pButton type="button" icon="pi pi-pencil" (click)="goToEdit(invoiceDocument.id)"></button>
+                    <button pButton type="button" icon="pi pi-download" (click)="generatePdf(invoiceDocument.id)"></button>
                 </td>
             </tr>
         </ng-template>

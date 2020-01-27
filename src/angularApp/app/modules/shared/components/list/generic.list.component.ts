@@ -42,17 +42,18 @@ export class GenericListComponent<CollectionType> {
   search (value) {
     const valRegexp = new RegExp(value || this.searchValue, 'i');
 
-    this.all = this.total.filter(forecast => {
+    this.all = this.total.filter(item => {
 
-      const checkArray = this.transformObjectIntroArray(forecast);
+      const checkArray = this.transformObjectIntroArray(item);
       for (const val of checkArray) {
         if (val === value || valRegexp.test(<string> val)) {
+
           return true;
         }
       }
     });
 
-    this.pageChange(1);
+    this.viewSimple();
   }
 
   viewSimple() {
