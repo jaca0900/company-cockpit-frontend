@@ -168,7 +168,7 @@ export class PdfConverterService {
                   text: `${invoice.paymentMethod.value === 'transfer' ? 'Przelew' : 'gotówka'}`
                 }
               ],
-              margin: [0, 100],
+              margin: [0, 10, 0, 0],
             },
             {
               text: invoice.paymentMethod.value !== 'transfer' ? [] : [
@@ -180,7 +180,7 @@ export class PdfConverterService {
                   text: `${invoice.accountNumber}`
                 }
               ],
-              margin: [0, 100],
+              margin: [0, 10, 0, 0],
             },
             {
               text: [
@@ -192,7 +192,7 @@ export class PdfConverterService {
                   text: `${moment(invoice.payDate).format('MM/DD/YYYY')}`
                 }
               ],
-              margin: [0, 100],
+              margin: [0, 10, 0, 0],
             }
           ]
         },
@@ -203,7 +203,7 @@ export class PdfConverterService {
                 {
                   text: 'Sprzedawca:\n',
                   bold: true,
-                  marging: [0, 10]
+                  marging: [0, 150]
                 },
                 {
                   text: '..................',
@@ -215,7 +215,7 @@ export class PdfConverterService {
                 {
                   text: 'Kupujący:\n',
                   bold: true,
-                  marging: [0, 10]
+                  marging: [0, 150]
                 },
                 {
                   text: '..................'
