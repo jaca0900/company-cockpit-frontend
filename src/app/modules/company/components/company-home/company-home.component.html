@@ -1,50 +1,24 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-12">
+    <div [ngClass]="{'col-12': !showCompanyForm, 'col-8': showCompanyForm}" style="transition: 0.5s">
       <app-company-list
+        [title]="'Available companies'"
         [dataSet]="userCompanies"
         [headers]="['Nip', 'Name', 'Address', 'Owned', 'Actions']"
-        [displayKeys]="['nip', 'companyName', 'address', 'isOwnedByUser']">
+        [displayKeys]="['nip', 'companyName', 'address', 'isOwnedByUser']"
+        [actions]="actions"
+        [isAdd]="true"
+        (addHandler)="openCloseForm()"
+        (actionHandler)="handleActionClick($event)">
       </app-company-list>
+    </div>
+    <div @companyForm *ngIf="showCompanyForm" class="col-4">
+      <app-company-form
+        [title]="mode + ' company'"
+        (dispose)="disposeForm()"
+        [mode]="mode"
+        [company]="selectedCompany"></app-company-form>
     </div>
   </div>
 </div>
-<!--<div class="ui-g-12 ui-md-12 no-padding">-->
-<!--  <p-toolbar>-->
-<!--    <div class="ui-toolbar-group-left">-->
-<!--      <button pButton type="button" label="Add Contractor" icon="pi pi-plus" (click)="goToAdd()"></button>-->
-<!--    </div>-->
-
-<!--    <div class="ui-toolbar-group-right">-->
-<!--      <input class="no-width" type="text" name="searchInput" [(ngModel)]="searchValue" pInputText>-->
-<!--      <button pButton type="button" label="Search" icon="pi pi-search" (click)='search()'></button>-->
-<!--    </div>-->
-<!--  </p-toolbar>-->
-<!--  <p-table [value]="displayData" class="common-table" [paginator]="true" [rows]="10">-->
-<!--    <ng-template pTemplate="header">-->
-<!--      <tr>-->
-<!--        <th>Nip</th>-->
-<!--        <th>Name</th>-->
-<!--        <th>address</th>-->
-<!--        <th>Owned</th>-->
-<!--        <th>Actions</th>-->
-<!--      </tr>-->
-<!--    </ng-template>-->
-<!--    <ng-template pTemplate="body" let-company>-->
-<!--      <tr>-->
-<!--        <td>{{company.nip}}</td>-->
-<!--        <td>{{company.companyName}}</td>-->
-<!--        <td>{{company.address}}</td>-->
-<!--        <td>-->
-<!--          <p-checkbox disabled="true" name="isOwnedByUser" binary="true" [ngModel]="company.isOwnedByUser"></p-checkbox>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <button pButton type="button" icon="pi pi-eye" (click)="goToDetails(company.id)"></button>-->
-<!--          <button pButton type="button" icon="pi pi-pencil" (click)="goToEdit(company.id)"></button>-->
-<!--          <button pButton type="button" icon="pi pi-file-o" (click)="goToInvoice(company.id)"></button>-->
-<!--        </td>-->
-<!--      </tr>-->
-<!--    </ng-template>-->
-<!--  </p-table>-->
-<!--</div>-->
 

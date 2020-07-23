@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 // import { remote } from 'electron';
 import { CompanyService } from '../../sevices/company.service';
 import { catchError } from 'rxjs/operators';
@@ -25,9 +25,40 @@ export class CompanyListComponent extends GenericListComponent<ICompany> impleme
   @Input()
   headers: string[];
 
-  constructor(private companyService: CompanyService, private router: Router) {
+  @Input()
+  title: string;
+
+  @Input()
+  isAdd = false;
+
+  @Input()
+  actions: {
+    tooltip: string;
+    icon: string;
+    color: string
+  }[];
+
+  @Output()
+  actionHandler: EventEmitter<{ record: any, actionIndex: number }> = new EventEmitter<{ record: any, actionIndex: number }>();
+
+  @Output()
+  addHandler = new EventEmitter();
+
+  constructor() {
     super();
   }
 
   ngOnInit() {}
+
+  addClick() {
+    this.addHandler.emit();
+  }
+
+  actionClick(record, actionIndex) {
+
+    this.actionHandler.emit({
+      record,
+      actionIndex
+    });
+  }
 }

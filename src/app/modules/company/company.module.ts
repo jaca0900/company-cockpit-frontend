@@ -8,6 +8,7 @@ import { CompanyCreateComponent } from './components/company-create/company-crea
 import { CompanyEditComponent } from './components/company-edit/company-edit.component';
 import { CompanyDetailsComponent } from './components/company-details/company-details.component';
 import {CompanyHomeComponent} from './components/company-home/company-home.component';
+import {CompanyFromComponent} from './components/company-form/company-from.component';
 
 @NgModule({
     declarations: [
@@ -15,7 +16,8 @@ import {CompanyHomeComponent} from './components/company-home/company-home.compo
       CompanyListComponent,
       CompanyCreateComponent,
       CompanyEditComponent,
-      CompanyDetailsComponent
+      CompanyDetailsComponent,
+      CompanyFromComponent
     ],
     imports: [
       CommonModule,

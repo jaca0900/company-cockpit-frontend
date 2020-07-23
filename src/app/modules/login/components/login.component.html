@@ -1,24 +1,18 @@
 <form  ngNativeValidate
     (submit)="doLogin()"
     class="login-form">
-    
-    <div class="ui-g">
-        <div class="ui-g-12 ui-md-12 no-padd-margin">
-            <label>Username</label>
-        </div>
-        <div class="ui-g-12 ui-md-12 no-padd-margin">
-            <input class="login-input" type="text" name="login" [(ngModel)]="login" pInputText>
-        </div>
-    </div>
 
-    <div class="ui-g" style="margin-bottom: 5px">
-        <div class="ui-g-12 ui-md-12 no-padd-margin">
-            <label for="float-pass">Password</label>
-        </div>
-        <div class="ui-g-12 ui-md-12 no-padd-margin">
-            <input class="login-input" id="float-pass" type="password" id="float-input" name="pass" [(ngModel)]="pass" pInputText>
-        </div>
-    </div>
+    <div class="container-fluid">
+      <div class="col-4" style="horiz-align: center; margin: auto">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Username" type="text" name="login" [(ngModel)]="login">
+        </mat-form-field>
 
-    <button pButton type="submit" label="Login"></button>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password" type="password" name="pass" [(ngModel)]="pass">
+        </mat-form-field>
+
+        <button mat-raised-button class="btn btn-info" style="float: right;" type="submit">Login</button>
+      </div>
+    </div>
 </form>

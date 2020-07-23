@@ -1,6 +1,13 @@
 <div class="card card-stats">
-  <div class="card-header card-header-primary">
-    <h3 class="card-title">Available companies</h3>
+  <div class="card-header card-header-primary row">
+    <div class="col-11">
+      <h3 class="card-title">{{title}}</h3>
+    </div>
+    <div *ngIf="isAdd" class="col-1">
+      <button mat-raised-button class="btn btn-round btn-just-icon" style="float: right" (click)="addClick()">
+        <i class="material-icons">add</i>
+      </button>
+    </div>
   </div>
   <div class="card-body">
     <table class="table">
@@ -11,14 +18,15 @@
         <tr *ngFor="let data of dataSet">
           <td *ngFor="let key of displayKeys">
             <span *ngIf="(data[key] | typeof) === 'boolean'">
-              <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+              <mat-checkbox [checked]="data[key]" class="example-margin"></mat-checkbox>
             </span>
-            <span>{{data[key]}}</span>
+            <span *ngIf="(data[key] | typeof) !== 'boolean'">{{data[key]}}</span>
           </td>
           <td>
-<!--            <button pButton type="button" icon="pi pi-eye" (click)="goToDetails(data.id)"></button>-->
-<!--            <button pButton type="button" icon="pi pi-pencil" (click)="goToEdit(data.id)"></button>-->
-<!--            <button pButton type="button" icon="pi pi-file-o" (click)="goToInvoice(data.id)"></button>-->
+            <button *ngFor="let action of actions; let i = index" mat-raised-button type="button" matTooltip="{{action.tooltip}}" [matTooltipPosition]="'above'"
+                class="btn btn-{{action.color || 'primary'}} btn-link btn-sm btn-just-icon" (click)="actionClick(data, i)">
+              <i class="material-icons">{{action.icon}}</i>
+            </button>
           </td>
         </tr>
       </tbody>
