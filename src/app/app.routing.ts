@@ -12,8 +12,9 @@ import {TableListComponent} from './table-list/table-list.component';
 import {TypographyComponent} from './typography/typography.component';
 import {NotificationsComponent} from './notifications/notifications.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {AuthGuard} from './core/guards/auth-guard.service';
 
-const routes: Routes =[
+const routes: Routes = [
   { path: 'dashboard',      component: DashboardComponent },
   { path: 'user-profile',   component: UserProfileComponent },
   { path: 'table-list',     component: TableListComponent },
@@ -22,36 +23,19 @@ const routes: Routes =[
   { path: 'maps',           component: MapsComponent },
   { path: 'notifications',  component: NotificationsComponent },
   { path: 'upgrade',        component: UpgradeComponent },
+  // { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'login', loadChildren: './modules/login/login.module#LoginModule' },
+  { path: 'home',  redirectTo: '/dashboard' }, // TODO Add a dashboard with some fun stuff canActivate: [AuthGuard], loadChildren: './modules/home/home.module#HomeModule'},
+  { path: 'company', canActivate: [AuthGuard], loadChildren: './modules/company/company.module#CompanyModule'},
+  // { path: 'invoice', canActivate: [AuthGuard], loadChildren: './modules/invoice/invoice.module#InvoiceModule' },
+  // { path: '**', component: PageNotFoundComponent}
 ];
-
-// import { Routes } from '@angular/router';
-//
-// import { DashboardComponent } from '../../dashboard/dashboard.component';
-// import { UserProfileComponent } from '../../user-profile/user-profile.component';
-// import { TableListComponent } from '../../table-list/table-list.component';
-// import { TypographyComponent } from '../../typography/typography.component';
-// import { IconsComponent } from '../../icons/icons.component';
-// import { MapsComponent } from '../../maps/maps.component';
-// import { NotificationsComponent } from '../../notifications/notifications.component';
-// import { UpgradeComponent } from '../../upgrade/upgrade.component';
-//
-// export const AdminLayoutRoutes: Routes = [
-//   { path: 'dashboard',      component: DashboardComponent },
-//   { path: 'user-profile',   component: UserProfileComponent },
-//   { path: 'table-list',     component: TableListComponent },
-//   { path: 'typography',     component: TypographyComponent },
-//   { path: 'icons',          component: IconsComponent },
-//   { path: 'maps',           component: MapsComponent },
-//   { path: 'notifications',  component: NotificationsComponent },
-//   { path: 'upgrade',        component: UpgradeComponent },
-// ];
-
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes,{
+    RouterModule.forRoot(routes, {
        useHash: true
     })
   ],

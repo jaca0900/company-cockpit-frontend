@@ -22,6 +22,8 @@ export class CompanyService {
   saveUserContractor(company: ICompany) {
     const user = StorageService.getItem('User');
 
+    console.log('save to ', env.apiAddress);
+
     return this.http.post(`${env.apiAddress}/company/user/${user.appId}`, company)
   }
 

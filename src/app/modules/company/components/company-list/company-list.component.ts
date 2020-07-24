@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 // import { remote } from 'electron';
 import { CompanyService } from '../../sevices/company.service';
 import { catchError } from 'rxjs/operators';
@@ -13,43 +13,52 @@ import { Router } from '@angular/router';
   styleUrls: ['./company-list.component.scss']
 })
 export class CompanyListComponent extends GenericListComponent<ICompany> implements OnInit {
-  // TODO: add company model
-  public userCompanies: ICompany[]
+  // // TODO: add company model
+  // public userCompanies: ICompany[]
 
-  constructor(private companyService: CompanyService, private router: Router) {
+  @Input()
+  displayKeys: string[];
+
+  @Input()
+  dataSet: any[];
+
+  @Input()
+  headers: string[];
+
+  @Input()
+  title: string;
+
+  @Input()
+  isAdd = false;
+
+  @Input()
+  actions: {
+    tooltip: string;
+    icon: string;
+    color: string
+  }[];
+
+  @Output()
+  actionHandler: EventEmitter<{ record: any, actionIndex: number }> = new EventEmitter<{ record: any, actionIndex: number }>();
+
+  @Output()
+  addHandler = new EventEmitter();
+
+  constructor() {
     super();
   }
 
-  ngOnInit() {
-    this.companyService.getUserCompanies()
-    .pipe(
-      catchError(err => {
-        console.error('An error occured', err);
+  ngOnInit() {}
 
-        return of(err);
-      })
-    ).subscribe((companies) => {
+  addClick() {
+    this.addHandler.emit();
+  }
 
-      this.all = this.total = companies;
-      this.viewSimple();
+  actionClick(record, actionIndex) {
+
+    this.actionHandler.emit({
+      record,
+      actionIndex
     });
-  }
-
-  public goToDetails(companyId) {
-    console.log(`To details view ${companyId}`);
-    this.router.navigate(['/company/details', companyId]);
-  }
-
-  public goToEdit(companyId) {
-    console.log(`To edit view ${companyId}`);
-    this.router.navigate(['/company/edit', companyId]);
-  }
-
-  public goToAdd() {
-    this.router.navigate(['/company/add']);
-  }
-
-  public goToInvoice(companyId) {
-    this.router.navigate(['/invoice/create', companyId]);
   }
 }

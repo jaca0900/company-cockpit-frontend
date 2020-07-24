@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="card-header card-header-warning row">
+    <div class="col-11">
+      <h4 class="card-title">{{title}}</h4>
+    </div>
+    <div class="col-1">
+      <button type="button" class="btn btn-round btn-just-icon" style="float: right" (click)="closeForm()">
+        <i class="material-icons">clear</i>
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <form ngNativeValidate (submit)="formSubmit()">
+
+      <mat-form-field class="example-full-width">
+        <input type="text" name="nip" [(ngModel)]="company.nip" matInput placeholder="Nip">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input type="text" name="Name" [(ngModel)]="company.companyName" matInput placeholder="Name">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input type="text" name="address" [(ngModel)]="company.address" matInput placeholder="Address">
+      </mat-form-field>
+<!--          <div class="ui-g-4 ui-md-4 no-padd-margin">-->
+<!--            <p-checkbox label="Own company" name="isOwnedByUser" binary="true" [(ngModel)]="company.isOwnedByUser"></p-checkbox>-->
+<!--          </div>-->
+
+      <button mat-raised-button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</div>

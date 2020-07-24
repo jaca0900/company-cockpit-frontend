@@ -29,6 +29,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {CommonModule} from '@angular/common';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {CoreModule} from './core/core.module';
 
 @NgModule({
   imports: [
@@ -43,13 +45,8 @@ import {CommonModule} from '@angular/common';
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     }),
-      // below stuff should be from core module
-    MatButtonModule,
-    MatRippleModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatTooltipModule,
+    CoreModule,
+    // below stuff should be from core module
   ],
   declarations: [
     AppComponent,
@@ -65,6 +62,7 @@ import {CommonModule} from '@angular/common';
 
   ],
   providers: [],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

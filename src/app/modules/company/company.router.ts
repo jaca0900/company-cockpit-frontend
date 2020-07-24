@@ -4,10 +4,11 @@ import { CompanyCreateComponent } from './components/company-create/company-crea
 import { CompanyDetailsComponent } from './components/company-details/company-details.component';
 import { CompanyEditComponent } from './components/company-edit/company-edit.component';
 import { CompanyListComponent } from './components/company-list/company-list.component';
+import {CompanyHomeComponent} from './components/company-home/company-home.component';
 
 
 const childRoutes: Routes = [
-  { path: '', component: CompanyListComponent },
+  { path: '', component: CompanyHomeComponent },
   { path: 'add', component: CompanyCreateComponent },
   { path: 'edit/:companyId', component: CompanyEditComponent },
   { path: 'details/:companyId', component: CompanyDetailsComponent }

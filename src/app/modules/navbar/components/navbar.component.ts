@@ -4,7 +4,7 @@ import { AuthService } from '../../login/services/auth/auth.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-module-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
