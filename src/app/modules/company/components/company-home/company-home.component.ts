@@ -40,7 +40,7 @@ export class CompanyHomeComponent implements OnInit {
     handler: (row) => {
       console.log('edit', row);
       this.mode = 'edit';
-      this.selectedCompany = row;
+      this.selectedCompany = { ...row };
       this.showCompanyForm = true;
     }
   }, {
@@ -65,16 +65,6 @@ export class CompanyHomeComponent implements OnInit {
     });
   }
 
-  // public goToDetails(companyId) {
-  //   console.log(`To details view ${companyId}`);
-  //   this.router.navigate(['/company/details', companyId]);
-  // }
-  //
-  // public goToEdit(companyId) {
-  //   console.log(`To edit view ${companyId}`);
-  //   this.router.navigate(['/company/edit', companyId]);
-  // }
-
   public openCloseForm() {
     this.mode = 'create';
     this.selectedCompany = {} as ICompany;
@@ -85,9 +75,9 @@ export class CompanyHomeComponent implements OnInit {
     this.showCompanyForm = false;
   }
 
-  public goToInvoice(companyId) {
-    this.router.navigate(['/invoice/create', companyId]);
-  }
+  // public goToInvoice(companyId) {
+  //   this.router.navigate(['/invoice/create', companyId]);
+  // }
 
   handleActionClick({ actionIndex, record }) {
     this.actions[actionIndex].handler(record);

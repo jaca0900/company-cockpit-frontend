@@ -30,7 +30,10 @@ export class CompanyFromComponent {
     switch (this.mode) {
       case 'edit':
 
-        this.companyService.updateContractor(this.company);
+        this.companyService.updateContractor(this.company)
+          .subscribe(() => {
+            console.log('success');
+          });
         break;
       case 'create':
         console.log(this.mode)
