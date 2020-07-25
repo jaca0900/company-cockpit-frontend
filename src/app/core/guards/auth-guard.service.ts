@@ -15,6 +15,7 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   canActivate(): boolean {
+    console.log('Can activate');
     this.guard = this.isTruhy();
 
     console.log(this.guard);
@@ -26,7 +27,7 @@ export class AuthGuard implements CanActivate {
     console.log(this.guard);
 
     if (!this.guard) {
-      console.log("DO NAVIGATE", [CONSTANTS.MAIN_ROUTES.LOGIN]);
+      console.log('DO NAVIGATE', [CONSTANTS.MAIN_ROUTES.LOGIN]);
       this.router.navigate([CONSTANTS.MAIN_ROUTES.LOGIN]);
     }
 

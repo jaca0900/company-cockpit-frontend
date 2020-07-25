@@ -19,7 +19,8 @@ import {CompanyFromComponent} from './components/company-form/company-from.compo
       SharedModule,
     ],
     exports: [
-      CompanyListComponent
+      CompanyListComponent,
+      CompanyFromComponent
     ],
     providers: [],
     bootstrap: [],

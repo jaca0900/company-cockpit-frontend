@@ -10,13 +10,13 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
     { path: '/company', title: 'Contractors',  icon: 'contacts', class: '' },
-    { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
-    { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '' },
-    { path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
-    { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
-    { path: '/maps', title: 'Maps',  icon:'location_on', class: '' },
-    { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
-    { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
+    { path: '/user-profile', title: 'User Profile',  icon: 'person', class: '' },
+    { path: '/dashboard/table-list', title: 'Table List',  icon: 'content_paste', class: '' },
+    { path: '/dashboard/typography', title: 'Typography',  icon: 'library_books', class: '' },
+    { path: '/dashboard/icons', title: 'Icons',  icon: 'bubble_chart', class: '' },
+    { path: '/dashboard/maps', title: 'Maps',  icon: 'location_on', class: '' },
+    { path: '/dashboard/notifications', title: 'Notifications',  icon: 'notifications', class: '' },
+    // { path: '/dashboard/upgrade', title: 'Upgrade to PRO',  icon: 'unarchive', class: 'active-pro' },
 ];
 
 @Component({

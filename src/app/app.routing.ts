@@ -3,7 +3,6 @@ import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AdminLayoutComponent } from './modules/material-docs/layouts/admin-layout/admin-layout.component';
 import {MapsComponent} from './modules/material-docs/maps/maps.component';
 import {UpgradeComponent} from './modules/material-docs/upgrade/upgrade.component';
 import {IconsComponent} from './modules/material-docs/icons/icons.component';
