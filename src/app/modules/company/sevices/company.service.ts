@@ -16,7 +16,7 @@ export class CompanyService {
   getUserCompanies() {
     const user = StorageService.getItem('User');
 
-    return this.http.get<ICompany[]>(`${env.apiAddress}/company/byUserId/${user.appId}`);
+    return this.http.get<ICompany[]>(`${env.apiAddress}/company/byUserId/${user.id}`);
   }
 
   saveUserContractor(company: ICompany) {
@@ -24,7 +24,7 @@ export class CompanyService {
 
     console.log('save to ', env.apiAddress);
 
-    return this.http.post(`${env.apiAddress}/company/user/${user.appId}`, company)
+    return this.http.post(`${env.apiAddress}/company/user/${user.id}`, company)
   }
 
   getCompanyById(companyId: string) {

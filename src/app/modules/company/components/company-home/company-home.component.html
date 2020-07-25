@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div [ngClass]="{'col-12': !showCompanyForm, 'col-8': showCompanyForm}" style="transition: 0.5s">
-      <app-company-list
+      <app-table
         [title]="'Available companies'"
         [dataSet]="userCompanies"
         [headers]="['Nip', 'Name', 'Address', 'Owned', 'Actions']"
@@ -10,7 +10,7 @@
         [isAdd]="true"
         (addHandler)="openCloseForm()"
         (actionHandler)="handleActionClick($event)">
-      </app-company-list>
+      </app-table>
     </div>
     <div @companyForm *ngIf="showCompanyForm" class="col-4">
       <app-company-form

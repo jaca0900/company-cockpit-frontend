@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CompanyRouter } from './company.router'
 
-import { CompanyListComponent } from './components/company-list/company-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { CompanyDetailsComponent } from './components/company-details/company-details.component';
 import {CompanyHomeComponent} from './components/company-home/company-home.component';
@@ -10,7 +9,6 @@ import {CompanyFromComponent} from './components/company-form/company-from.compo
 @NgModule({
     declarations: [
       CompanyHomeComponent,
-      CompanyListComponent,
       CompanyDetailsComponent,
       CompanyFromComponent
     ],
@@ -19,7 +17,6 @@ import {CompanyFromComponent} from './components/company-form/company-from.compo
       SharedModule,
     ],
     exports: [
-      CompanyListComponent,
       CompanyFromComponent
     ],
     providers: [],

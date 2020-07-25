@@ -1,18 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 // import { remote } from 'electron';
-import { CompanyService } from '../../sevices/company.service';
-import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
-import { ICompany } from '../model/company.interface';
-import { GenericListComponent } from '../../../shared/components/list/generic.list.component';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-company-list',
-  templateUrl: './company-list.component.html',
-  styleUrls: ['./company-list.component.scss']
+  selector: 'app-table',
+  templateUrl: './table.component.html',
+  styleUrls: ['./tablecomponent.scss']
 })
-export class CompanyListComponent extends GenericListComponent<ICompany> implements OnInit {
+export class TableComponent implements OnInit {
   // // TODO: add company model
   // public userCompanies: ICompany[]
 
@@ -44,9 +38,7 @@ export class CompanyListComponent extends GenericListComponent<ICompany> impleme
   @Output()
   addHandler = new EventEmitter();
 
-  constructor() {
-    super();
-  }
+  constructor() {}
 
   ngOnInit() {}
 
