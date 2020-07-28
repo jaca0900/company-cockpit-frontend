@@ -23,7 +23,6 @@ export const ROUTES: RouteInfo[] = [
       {path: '/dashboard/notifications', title: 'Notifications', icon: 'notifications', class: ''}
     ]
   },
-  // { path: '/dashboard/upgrade', title: 'Upgrade to PRO',  icon: 'unarchive', class: 'active-pro' },
 ];
 
 @Component({
