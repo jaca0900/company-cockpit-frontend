@@ -1,0 +1,61 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header card-header-danger">
+          <h4 class="card-title">Edit Profile</h4>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="row">
+              <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="First name" name="firstName" [(ngModel)]="user.firstName">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Last name" name="lastName" [(ngModel)]="user.lastName">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Login" name="login" [(ngModel)]="user.login">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="E-mail" name="eMail" [(ngModel)]="user.eMail">
+                </mat-form-field>
+              </div>
+            </div>
+            <button mat-raised-button type="submit" class="btn btn-danger pull-right">Update Profile</button>
+            <div class="clearfix"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <app-table *ngIf="!showCompanyForm"
+        [title]="'Owned companies'"
+        [dataSet]="userCompanies"
+        [headers]="['Nip', 'Name']"
+        [displayKeys]="['nip', 'companyName']"
+        [actions]="actions"
+        [isAdd]="true"
+        (addHandler)="openCloseForm()"
+        (actionHandler)="handleActionClick($event)">
+      </app-table>
+      <app-company-form *ngIf="showCompanyForm"
+        [title]="mode + ' company'"
+        (dispose)="disposeForm()"
+        [mode]="mode"
+        [company]="selectedCompany"
+        [owned]="true"></app-company-form>
+    </div>
+  </div>
+</div>

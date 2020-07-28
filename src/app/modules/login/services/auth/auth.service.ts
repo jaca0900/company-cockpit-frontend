@@ -21,20 +21,11 @@ export class AuthService {
     private http: HttpClient,
   ) { }
 
-  login(username: string, pass: string): Promise<LoginResponse> {
+  login(username: string, pass: string): Promise<{ [key: string]: any }> {
     return this.http.post<{ [key: string]: any }>(`${environment.apiAddress}/user/login`,{
         login: username,
         password: pass
       }).toPromise()
-        .then(res => {
-          const loginRes: LoginResponse = {
-            appId: res.id,
-            completeName: res.login
-          };
-          console.log(res);
-
-          return loginRes;
-        })
         .catch(err => {
           console.error(err);
 

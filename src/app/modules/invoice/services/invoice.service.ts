@@ -15,7 +15,7 @@ export class InvoiceService {
   getUserInvoices() {
     const user = StorageService.getItem('User');
 
-    return this.http.get<{ [key: string]: any }[]>(`${env.apiAddress}/invoice/byUserId/${user.appId}`);
+    return this.http.get<{ [key: string]: any }[]>(`${env.apiAddress}/invoice/byUserId/${user.id}`);
   }
 
   saveInvoice(invoice) {
