@@ -53,10 +53,9 @@
   </div>
     <ul class="nav">
         <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-          <div class="dropdown nav-link" *ngIf="menuItem.children && menuItem.children.length">
-            <button href="#" class="dropdown-toggle btn nav-item" style="width: 100%; background: transparent; color: black"  data-toggle="dropdown" aria-expanded="true" >
-              Regular
-            </button>
+          <a class="nav-link" href="#" data-toggle="dropdown" aria-expanded="true" *ngIf="menuItem.children && menuItem.children.length">
+            <i class="material-icons">arrow_drop_down</i>
+            <p>Material docs</p>
             <ul class="dropdown-menu">
               <li *ngFor="let menuChild of menuItem.children">
                 <a class="nav-link" [routerLink]="[menuChild.path]">
@@ -65,7 +64,7 @@
                 </a>
               </li>
             </ul>
-          </div>
+          </a>
           <a class="nav-link" *ngIf="!(menuItem.children && menuItem.children.length)" [routerLink]="[menuItem.path]">
             <i class="material-icons">{{menuItem.icon}}</i>
             <p>{{menuItem.title}}</p>
