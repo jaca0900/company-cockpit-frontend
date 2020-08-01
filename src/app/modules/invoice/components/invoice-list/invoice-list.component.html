@@ -3,11 +3,15 @@
     <div class="col-12">
       <app-table
         [title]="'Available invoices'"
-        [dataSet]="displayData"
         [headers]="['Seller', 'Buyer', 'Net', 'Gross']"
-        [displayKeys]="['seller.company_name', 'buyer.company_name', 'totalNetto', 'totalBrutto']"
         [isAdd]="true"
         (addHandler)="goToAdd()">
+        <tr *ngFor="let invoice of displayData">
+          <td>{{invoice.seller.company_name}}</td>
+          <td>{{invoice.buyer.company_name}}</td>
+          <td>{{invoice.totalNetto}}</td>
+          <td>{{invoice.totalBrutto}}</td>
+        </tr>
       </app-table>
     </div>
   <!-- [actions]="actions"

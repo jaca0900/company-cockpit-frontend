@@ -14,6 +14,7 @@
     </div>
     <div @companyForm *ngIf="showCompanyForm" class="col-4">
       <app-company-form
+        [disposable]="true"
         [title]="mode + ' company'"
         (dispose)="disposeForm()"
         [mode]="mode"

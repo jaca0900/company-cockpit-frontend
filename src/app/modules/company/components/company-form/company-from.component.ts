@@ -11,6 +11,9 @@ export class CompanyFromComponent {
   company: ICompany = {} as ICompany
 
   @Input()
+  disposable = false;
+
+  @Input()
   mode = 'create';
 
   @Input()
@@ -18,6 +21,9 @@ export class CompanyFromComponent {
 
   @Input()
   owned = false;
+
+  @Input()
+  submitLabel = 'Save';
 
   @Output()
   dispose = new EventEmitter();

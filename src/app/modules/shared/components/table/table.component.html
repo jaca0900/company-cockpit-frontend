@@ -1,4 +1,4 @@
-<div class="card card-stats">
+<div class="card">
   <div class="card-header card-header-primary row">
     <div class="col-10">
       <h3 class="card-title">{{title}}</h3>
@@ -15,6 +15,8 @@
         <th *ngFor="let header of headers">{{header}}</th>
       </thead>
       <tbody>
+      <ng-content *ngIf="!dataSet"></ng-content>
+      <ng-container *ngIf="dataSet">
         <tr *ngFor="let data of dataSet">
           <td *ngFor="let key of displayKeys">
             <span *ngIf="(data[key] | typeof) === 'boolean'">
@@ -29,6 +31,7 @@
             </button>
           </td>
         </tr>
+      </ng-container>
       </tbody>
     </table>
   </div>
