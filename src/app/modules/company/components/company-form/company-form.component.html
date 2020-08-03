@@ -1,9 +1,20 @@
 <div class="card">
   <div class="card-header card-header-warning row">
-    <div class="col-10">
+    <div class="col-6">
       <h4 class="card-title">{{title}}</h4>
     </div>
-    <div class="col-2">
+    <div class="col-6">
+      <button *ngIf="selectCompany && isSeller"
+              type="button" class="btn btn-success btn-sm"
+              style="float: right" data-toggle="modal" data-target="#sell">
+        Select Company
+      </button>
+      <button *ngIf="selectCompany && !isSeller"
+              type="button" class="btn btn-success btn-sm"
+              style="float: right" data-toggle="modal" data-target="#buy">
+        Select Company
+      </button>
+
       <button *ngIf="disposable" type="button" class="btn btn-round btn-just-icon" style="float: right" (click)="closeForm()">
         <i class="material-icons">clear</i>
       </button>
@@ -23,11 +34,42 @@
       <mat-form-field>
         <input type="text" name="address" [(ngModel)]="company.address" matInput placeholder="Address">
       </mat-form-field>
-<!--          <div class="ui-g-4 ui-md-4 no-padd-margin">-->
-<!--            <p-checkbox label="Own company" name="isOwnedByUser" binary="true" [(ngModel)]="company.isOwnedByUser"></p-checkbox>-->
-<!--          </div>-->
 
       <button mat-raised-button type="submit" class="btn btn-primary">{{submitLabel}}</button>
     </form>
+  </div>
+</div>
+
+<div class="modal modal-angular fade" id="buy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <app-table
+          [title]="'Available companies'"
+        >
+          <tr *ngFor="let company of buyers">
+            <td>{{company.companyName}}</td>
+          </tr>
+        </app-table>
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal modal-angular fade" id="sell" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <app-table
+          [title]="'Available companies'"
+        >
+          <tr *ngFor="let company of sellers">
+            <td>{{company.companyName}}</td>
+          </tr>
+        </app-table>
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">Close</button>
+      </div>
+    </div>
   </div>
 </div>

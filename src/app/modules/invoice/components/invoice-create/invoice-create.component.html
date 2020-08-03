@@ -44,6 +44,8 @@
                 [company]="seller"
                 [owned]="true"
                 [submitLabel]="'Store in DB'"
+                [isSeller]="true"
+                [selectCompany]="true"
               ></app-company-form>
             </div>
 
@@ -54,6 +56,7 @@
                 [company]="buyer"
                 [owned]="false"
                 [submitLabel]="'Store in DB'"
+                [selectCompany]="true"
               ></app-company-form>
             </div>
           </div>
@@ -153,7 +156,7 @@
               </div>
               <div class="col-6">
                 <mat-form-field>
-                  <input matInput [disabled]="true" placeholder="sellected method" [(ngModel)]="invoice.paymentMethod">
+                  <input matInput [disabled]="true" name="selectedMethod" placeholder="sellected method" [(ngModel)]="invoice.paymentMethod">
                 </mat-form-field>
               </div>
             </div>

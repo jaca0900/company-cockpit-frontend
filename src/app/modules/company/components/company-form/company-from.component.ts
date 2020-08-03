@@ -1,12 +1,13 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ICompany} from '../model/company.interface';
 import {CompanyService} from '../../sevices/company.service';
+import { remove } from 'lodash';
 
 @Component({
   selector: 'app-company-form',
   templateUrl: './company-form.component.html'
 })
-export class CompanyFromComponent {
+export class CompanyFromComponent implements OnInit {
   @Input()
   company: ICompany = {} as ICompany
 
@@ -25,10 +26,35 @@ export class CompanyFromComponent {
   @Input()
   submitLabel = 'Save';
 
+  @Input()
+  selectCompany = false;
+
+  @Input()
+  isSeller;
+
+  @Input()
+  isBuyer;
+
   @Output()
   dispose = new EventEmitter();
 
+  sellers: ICompany[];
+
+  buyers: ICompany[];
+
   constructor(private companyService: CompanyService) {}
+
+  ngOnInit() {
+    console.log(this.isSeller, this.isBuyer);
+    if (this.selectCompany) {
+      this.companyService.getUserCompanies()
+        .subscribe((companies) => {
+
+          this.sellers = companies;
+          this.buyers = remove(this.sellers, (company) => !company.isOwnedByUser);
+        });
+    }
+  }
 
   formSubmit() {
     this.company.isOwnedByUser = this.owned;
