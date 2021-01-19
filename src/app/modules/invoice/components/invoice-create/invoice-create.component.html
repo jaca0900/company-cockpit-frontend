@@ -7,14 +7,18 @@
           <h3 class="card-title">Invoice Header</h3>
         </div>
         <div class="col-2">
-          <a mat-raised-button class="btn btn-round btn-just-icon" data-toggle="collapse" href="#headerCollapse"
-             role="button" style="float: right">
+          <a mat-raised-button *ngIf="!collapsableData.headerCollapse" class="btn btn-round btn-just-icon" data-toggle="collapse" href="#headerCollapse"
+             role="button" (click)="collapsableData.headerCollapse = !collapsableData.headerCollapse" style="float: right">
             <i class="material-icons">add</i>
+          </a>
+          <a mat-raised-button *ngIf="collapsableData.headerCollapse" class="btn btn-round btn-just-icon" data-toggle="collapse" href="#headerCollapse"
+             role="button" (click)="collapsableData.headerCollapse = !collapsableData.headerCollapse" style="float: right">
+            <i class="material-icons">remove</i>
           </a>
         </div>
       </div>
       <div class="card-body">
-        <div class="collapse container-fluid" id="headerCollapse">
+        <div class="collapse show container-fluid" id="headerCollapse">
           <div class="row">
             <div class="col-4">
               <mat-form-field>
@@ -25,38 +29,50 @@
 
             <div class="col-4">
               <mat-form-field>
-                <input matInput placeholder="Sell Date" type="text" name="sellDate" [(ngModel)]="invoice.sellDate">
+                <mat-label>Sell Date</mat-label>
+                <input matInput [matDatepicker]="sellDatePicker" [value]="invoice.sellDate">
+                <mat-datepicker-toggle matSuffix [for]="sellDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #sellDatePicker></mat-datepicker>
               </mat-form-field>
             </div>
 
             <div class="col-4">
               <mat-form-field>
-                <input matInput placeholder="Creation Date" type="text" name="createData"
-                       [(ngModel)]="invoice.creationDate">
+                <mat-label>Creation Date</mat-label>
+                <input matInput [matDatepicker]="creationDatePicker" [value]="invoice.creationDate">
+                <mat-datepicker-toggle matSuffix [for]="creationDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #creationDatePicker></mat-datepicker>
               </mat-form-field>
             </div>
           </div>
           <div class="row">
             <div class="col-6">
               <app-company-form
+                name="sellerForm"
                 [title]="'Seller company'"
                 [mode]="'create'"
                 [company]="seller"
                 [owned]="true"
-                [submitLabel]="'Store in DB'"
+                [submitLabel]="'Save as new company'"
                 [isSeller]="true"
                 [selectCompany]="true"
+                [required]="true"
+                (setCompany)="setCompany($event)"
+                (updateCompanies)="setCompany($event)"
               ></app-company-form>
             </div>
 
             <div class="col-6">
               <app-company-form
+                name="buyerForm"
                 [title]="'Buyer company'"
                 [mode]="'create'"
                 [company]="buyer"
                 [owned]="false"
-                [submitLabel]="'Store in DB'"
+                [submitLabel]="'Save as new company'"
+                [required]="true"
                 [selectCompany]="true"
+                (setCompany)="setCompany($event)"
               ></app-company-form>
             </div>
           </div>
@@ -70,14 +86,18 @@
           <h3 class="card-title">Invoice Contents</h3>
         </div>
         <div class="col-2">
-          <a mat-raised-button class="btn btn-round btn-just-icon" data-toggle="collapse" href="#contentsCollapse"
-             role="button" style="float: right">
+          <a mat-raised-button *ngIf="!collapsableData.contentsCollapse" class="btn btn-round btn-just-icon" data-toggle="collapse" href="#contentsCollapse"
+             role="button" (click)="collapsableData.contentsCollapse = !collapsableData.contentsCollapse" style="float: right">
             <i class="material-icons">add</i>
+          </a>
+          <a mat-raised-button *ngIf="collapsableData.contentsCollapse" class="btn btn-round btn-just-icon" data-toggle="collapse" href="#contentsCollapse"
+             role="button" (click)="collapsableData.contentsCollapse = !collapsableData.contentsCollapse" style="float: right">
+            <i class="material-icons">remove</i>
           </a>
         </div>
       </div>
       <div class="card-body">
-        <div class="collapse container-fluid row" id="contentsCollapse">
+        <div class="collapse show container-fluid row" id="contentsCollapse">
           <div class="col-8">
             <app-table
               [title]="'Invoice Products'"
@@ -131,19 +151,23 @@
           <h3 class="card-title">Invoice Footer</h3>
         </div>
         <div class="col-2">
-          <a mat-raised-button class="btn btn-round btn-just-icon" data-toggle="collapse" href="#foooterCollapse"
-             role="button" style="float: right">
+          <a mat-raised-button *ngIf="!collapsableData.foooterCollapse" class="btn btn-round btn-just-icon" data-toggle="collapse" href="#foooterCollapse"
+             role="button" (click)="collapsableData.foooterCollapse = !collapsableData.foooterCollapse" style="float: right">
             <i class="material-icons">add</i>
+          </a>
+          <a mat-raised-button *ngIf="collapsableData.foooterCollapse" class="btn btn-round btn-just-icon" data-toggle="collapse" href="#foooterCollapse"
+             role="button" (click)="collapsableData.foooterCollapse = !collapsableData.foooterCollapse" style="float: right">
+            <i class="material-icons">remove</i>
           </a>
         </div>
       </div>
       <div class="card-body">
-        <div class="collapse container-fluid row" id="foooterCollapse">
+        <div class="collapse show container-fluid row" id="foooterCollapse">
           <div class="col-6">
             <div class="dropdown row">
               <div class="col-6">
                 <button href="#" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                  select payment method
+                  change payment method
                   <b class="caret"></b>
                 </button>
 
@@ -164,45 +188,21 @@
           <div class="col-3">
             <mat-form-field>
               <input matInput placeholder="account number" type="text"
-                     disabled="{{ invoice.paymentMethod.value != 'transfer' }}" name="accountNumber"
+                     disabled="{{ invoice.paymentMethod != 'Transfer' }}" name="accountNumber"
                      [(ngModel)]="invoice.accountNumber">
             </mat-form-field>
           </div>
           <div class="col-3">
             <mat-form-field>
-              <input matInput placeholder="Payment Date" name="payDate" [(ngModel)]="invoice.payDate">
+              <mat-label>Payment Date</mat-label>
+              <input matInput [matDatepicker]="PaymentDatePicker" [value]="invoice.payDate">
+              <mat-datepicker-toggle matSuffix [for]="PaymentDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #PaymentDatePicker></mat-datepicker>
             </mat-form-field>
           </div>
         </div>
       </div>
     </div>
-
-    <button mat-raised-button class="btn btn-primary" type="submit">Save</button>
-
-    <!--    <p-dialog header="Select seller" [(visible)]="showSeller">-->
-    <!--      <p-table [value]="sellers" class="common-table" selectionMode="single" [(selection)]="seller" [paginator]="true"-->
-    <!--               [rows]="10">-->
-    <!--        <ng-template pTemplate="body" let-seller>-->
-    <!--          <tr [pSelectableRow]="seller">-->
-    <!--            <td>{{seller.companyName}}</td>-->
-    <!--          </tr>-->
-    <!--        </ng-template>-->
-    <!--      </p-table>-->
-
-    <!--      <button type="button" (click)="closeSellerDialog()" pButton label="save"></button>-->
-    <!--    </p-dialog>-->
-
-    <!--    <p-dialog header="Select buyer" [(visible)]="showBuyer">-->
-    <!--      <p-table [value]="buyers" class="common-table" selectionMode="single" [(selection)]="buyer" [paginator]="true"-->
-    <!--               [rows]="10">-->
-    <!--        <ng-template pTemplate="body" let-buyer>-->
-    <!--          <tr [pSelectableRow]="buyer">-->
-    <!--            <td>{{buyer.companyName}}</td>-->
-    <!--          </tr>-->
-    <!--        </ng-template>-->
-    <!--      </p-table>-->
-
-    <!--      <button type="button" (click)="closeBuyerDialog()" pButton label="save"></button>-->
-    <!--    </p-dialog>-->
+    <button [disabled]="!(!!seller.id && !!buyer.id)" mat-raised-button class="btn btn-primary" type="submit">Save</button>
   </form>
 </div>

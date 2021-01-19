@@ -4,6 +4,7 @@ import {ICompany} from '@copmany/components/model/company.interface';
 import {catchError} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {CompanyService} from '@copmany/sevices/company.service';
+import {AuthService} from '../../../login/services/auth/auth.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -25,14 +26,13 @@ export class UserProfileComponent implements OnInit {
     icon: 'create',
     tooltip: 'edit',
     handler: (row) => {
-      console.log('edit', row);
       this.mode = 'edit';
       this.selectedCompany = { ...row };
       this.showCompanyForm = true;
     }
   }];
 
-  constructor(private companyService: CompanyService) { }
+  constructor(private companyService: CompanyService, private authService: AuthService) { }
 
   ngOnInit() {
     console.log(StorageService.getItem('User'));
@@ -58,6 +58,12 @@ export class UserProfileComponent implements OnInit {
 
   handleActionClick({ actionIndex, record }) {
     this.actions[actionIndex].handler(record);
+  }
+
+  updateUser() {
+    delete this.user.password;
+    this.authService.updateUser(this.user.id, this.user)
+      .subscribe((res) => StorageService.setItem('User', this.user), (err) => console.error(err));
   }
 
   public disposeForm() {

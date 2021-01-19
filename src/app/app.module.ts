@@ -14,6 +14,7 @@ import {
 } from '@agm/core';
 import {CommonModule} from '@angular/common';
 import {CoreModule} from './core/core.module';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   imports: [
@@ -21,10 +22,11 @@ import {CoreModule} from './core/core.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ComponentsModule,
+    // ComponentsModule,
     FormsModule,
     RouterModule,
     AppRoutingModule,
+    MatNativeDateModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     }),

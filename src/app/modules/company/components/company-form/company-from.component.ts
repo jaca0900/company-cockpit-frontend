@@ -2,17 +2,28 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ICompany} from '../model/company.interface';
 import {CompanyService} from '../../sevices/company.service';
 import { remove } from 'lodash';
+import {NotificationService} from '@shared/services/notification.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-company-form',
-  templateUrl: './company-form.component.html'
+  templateUrl: './company-form.component.html',
+  styleUrls: ['./company-form.component.scss']
 })
 export class CompanyFromComponent implements OnInit {
+
+  @Input()
+  required = false;
+
   @Input()
   company: ICompany = {} as ICompany
 
   @Input()
   disposable = false;
+
+  @Input()
+  disabled = false;
 
   @Input()
   mode = 'create';
@@ -38,6 +49,15 @@ export class CompanyFromComponent implements OnInit {
   @Output()
   dispose = new EventEmitter();
 
+  @Output()
+  updateCompanies = new EventEmitter();
+
+  @Output()
+  setCompany = new EventEmitter<{
+    type: string,
+    company: ICompany
+  }>();
+
   sellers: ICompany[];
 
   buyers: ICompany[];
@@ -45,7 +65,6 @@ export class CompanyFromComponent implements OnInit {
   constructor(private companyService: CompanyService) {}
 
   ngOnInit() {
-    console.log(this.isSeller, this.isBuyer);
     if (this.selectCompany) {
       this.companyService.getUserCompanies()
         .subscribe((companies) => {
@@ -64,14 +83,20 @@ export class CompanyFromComponent implements OnInit {
 
         this.companyService.updateContractor(this.company)
           .subscribe(() => {
-            console.log('success');
+            this.updateCompanies.emit(this.company);
           });
         break;
       case 'create':
-        console.log(this.mode)
+        delete this.company.id;
         this.companyService.saveUserContractor(this.company)
-          .subscribe(() => {
-            console.log('success');
+          .subscribe(([ [res] ] ) => {
+            this.company.id = res.id
+
+            this.updateCompanies.emit(res);
+            NotificationService.showNotification('success', 'Success', 'Company saved successfully.');
+          }, (err) => {
+            console.error(err);
+            NotificationService.showNotification('danger', 'Error', 'Error saving company this nip number is already taken.');
           });
         break;
     }
@@ -79,5 +104,11 @@ export class CompanyFromComponent implements OnInit {
 
   closeForm() {
     this.dispose.emit();
+  }
+
+  setSellectedCompany(company: ICompany, modalId: string, type: string) {
+    console.log('EMIT', company);
+    this.setCompany.emit({ type, company });
+    $(`#${modalId}`).modal('hide');
   }
 }

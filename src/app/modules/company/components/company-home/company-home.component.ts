@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 import { ICompany } from '../model/company.interface';
 import { Router } from '@angular/router';
 import {animate, group, query, stagger, state, style, transition, trigger} from '@angular/animations';
+import {NotificationService} from '@shared/services/notification.service';
 
 
 @Component({
@@ -25,7 +26,6 @@ import {animate, group, query, stagger, state, style, transition, trigger} from 
   ]
 })
 export class CompanyHomeComponent implements OnInit {
-  // TODO: add company model
   public userCompanies: ICompany[]
 
   showCompanyForm = false;
@@ -37,8 +37,7 @@ export class CompanyHomeComponent implements OnInit {
   actions = [{
     icon: 'create',
     tooltip: 'edit',
-    handler: (row) => {
-      console.log('edit', row);
+    handler: (row: ICompany) => {
       this.mode = 'edit';
       this.selectedCompany = { ...row };
       this.showCompanyForm = true;
@@ -47,22 +46,20 @@ export class CompanyHomeComponent implements OnInit {
     icon: 'clear',
     tooltip: 'Remove company',
     color: 'danger',
-    handler: (row) => {}
+    handler: (row: ICompany) => {
+      this.companyService.removeCompany(row.id).toPromise()
+        .then(() => this.loadCompanies())
+        .catch((err) => {
+          console.error(err);
+          NotificationService.showNotification('danger', 'Error', 'An error occured.');
+        });
+    }
   }];
 
-  constructor(private companyService: CompanyService, private router: Router) {}
+  constructor(private companyService: CompanyService) {}
 
   ngOnInit() {
-    this.companyService.getUserCompanies()
-    .pipe(
-      catchError(err => {
-        console.error('An error occured', err);
-
-        return of(err);
-      })
-    ).subscribe((companies) => {
-      this.userCompanies = companies;
-    });
+    this.loadCompanies();
   }
 
   public openCloseForm() {
@@ -73,6 +70,12 @@ export class CompanyHomeComponent implements OnInit {
 
   public disposeForm() {
     this.showCompanyForm = false;
+  }
+
+  private loadCompanies() {
+    this.companyService.getUserCompanies().toPromise()
+      .then((companies) => this.userCompanies = companies)
+      .catch((err) => NotificationService.showNotification('danger', 'Error', 'An error occured'));
   }
 
   // public goToInvoice(companyId) {

@@ -18,6 +18,7 @@ import { InvoiceListComponent } from './components/invoice-list/invoice-list.com
 import { InvoiceEditComponent } from './components/invoice-edit/invoice-edit.component';
 import { InvoiceDetailsComponent } from './components/invoice-details/invoice-details.component';
 import {CompanyModule} from '@copmany/company.module';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import {CompanyModule} from '@copmany/company.module';
     InvoiceRouter,
     SharedModule,
     CompanyModule,
+    MatDatepickerModule
     // ButtonModule,
     // TableModule,
     // InputTextareaModule,

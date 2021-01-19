@@ -4,12 +4,12 @@
       <h4 class="card-title">{{title}}</h4>
     </div>
     <div class="col-6">
-      <button *ngIf="selectCompany && isSeller"
+      <button *ngIf="selectCompany && isSeller && !disabled"
               type="button" class="btn btn-success btn-sm"
               style="float: right" data-toggle="modal" data-target="#sell">
         Select Company
       </button>
-      <button *ngIf="selectCompany && !isSeller"
+      <button *ngIf="selectCompany && !isSeller && !disabled"
               type="button" class="btn btn-success btn-sm"
               style="float: right" data-toggle="modal" data-target="#buy">
         Select Company
@@ -21,21 +21,22 @@
     </div>
   </div>
   <div class="card-body">
-    <form ngNativeValidate (submit)="formSubmit()">
+    <form #companyForm ngNativeValidate (submit)="formSubmit()">
 
       <mat-form-field>
-        <input type="text" name="nip" [(ngModel)]="company.nip" matInput placeholder="Nip">
+        <input [disabled]="disabled" required="true" type="text" name="nip" [(ngModel)]="company.nip" matInput placeholder="Nip">
       </mat-form-field>
 
       <mat-form-field>
-        <input type="text" name="Name" [(ngModel)]="company.companyName" matInput placeholder="Name">
+        <input [disabled]="disabled" required="true" type="text" name="Name" [(ngModel)]="company.companyName" matInput placeholder="Name">
       </mat-form-field>
 
       <mat-form-field>
-        <input type="text" name="address" [(ngModel)]="company.address" matInput placeholder="Address">
+        <input [disabled]="disabled" required="true" type="text" name="address" [(ngModel)]="company.address" matInput placeholder="Address">
       </mat-form-field>
 
-      <button mat-raised-button type="submit" class="btn btn-primary">{{submitLabel}}</button>
+      <span *ngIf="required && companyForm.checkValidity() && !company.id" class="text-danger">Before saving the invoice, you need to save this company.</span>
+      <button *ngIf="!disabled" style="float: right" mat-raised-button type="submit" class="btn btn-primary">{{submitLabel}}</button>
     </form>
   </div>
 </div>
@@ -47,11 +48,11 @@
         <app-table
           [title]="'Available companies'"
         >
-          <tr *ngFor="let company of buyers">
+          <tr *ngFor="let company of buyers" class="row-selectable" (click)="setSellectedCompany(company, 'buy', 'buyer')">
             <td>{{company.companyName}}</td>
           </tr>
         </app-table>
-        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">Close</button>
+        <button type="button" class="btn btn-outline-secondary" style="float: right" data-dismiss="modal" aria-label="Close">Close</button>
       </div>
     </div>
   </div>
@@ -64,11 +65,11 @@
         <app-table
           [title]="'Available companies'"
         >
-          <tr *ngFor="let company of sellers">
+          <tr *ngFor="let company of sellers" class="row-selectable" (click)="setSellectedCompany(company, 'sell', 'seller')">
             <td>{{company.companyName}}</td>
           </tr>
         </app-table>
-        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">Close</button>
+        <button type="button" class="btn btn-outline-secondary" style="float: right" data-dismiss="modal" aria-label="Close">Close</button>
       </div>
     </div>
   </div>
