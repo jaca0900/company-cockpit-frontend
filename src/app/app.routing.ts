@@ -6,7 +6,6 @@ import { Routes, RouterModule } from '@angular/router';
 import {AuthGuard} from './core/guards/auth-guard.service';
 
 const routes: Routes = [
-  { path: 'dashboard',   canActivate: [AuthGuard], loadChildren: './modules/material-docs/material-docs.module#MaterialDocsModule' },
   { path: 'user-profile', loadChildren: './modules/user/user.module#UserModule' },
   { path: 'login', loadChildren: './modules/login/login.module#LoginModule' },
   { path: 'home',  redirectTo: '/invoice' },
