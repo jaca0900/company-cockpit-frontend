@@ -28,7 +28,7 @@
     "@angular/router": "^8.2.12",
     "chart.js": "^2.9.1",
     "core-js": "^3.3.5",
-    "electron": "^7.1.9",
+    "electron": "^9.4.0",
     "jasmine": "^3.5.0",
     "node-sass": "^4.13.0",
     "node-typescript": "^0.1.3",
