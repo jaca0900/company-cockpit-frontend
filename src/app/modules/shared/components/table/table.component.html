@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-header card-header-primary row">
+    <div class="col-10">
+      <h3 class="card-title">{{title}}</h3>
+    </div>
+    <div *ngIf="isAdd" class="col-2">
+      <button mat-raised-button class="btn btn-round btn-just-icon" style="float: right" (click)="addClick()">
+        <i class="material-icons">add</i>
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead class="text-primary">
+        <th *ngFor="let header of headers">{{header}}</th>
+      </thead>
+      <tbody>
+      <ng-content *ngIf="!dataSet"></ng-content>
+      <ng-container *ngIf="dataSet">
+        <tr *ngFor="let data of dataSet">
+          <td *ngFor="let key of displayKeys">
+            <span *ngIf="(data[key] | typeof) === 'boolean'">
+              <mat-checkbox [checked]="data[key]" class="example-margin"></mat-checkbox>
+            </span>
+            <span *ngIf="(data[key] | typeof) !== 'boolean'">{{data[key]}}</span>
+          </td>
+          <td>
+            <button *ngFor="let action of actions; let i = index" mat-raised-button type="button" matTooltip="{{action.tooltip}}" [matTooltipPosition]="'above'"
+                class="btn btn-{{action.color || 'primary'}} btn-link btn-sm btn-just-icon" (click)="actionClick(data, i)">
+              <i class="material-icons">{{action.icon}}</i>
+            </button>
+          </td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

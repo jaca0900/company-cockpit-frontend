@@ -1,0 +1,31 @@
+<div class="container-fluid">
+<!--  <div class="row">-->
+    <div class="col-12">
+      <app-table
+        [title]="'Available invoices'"
+        [headers]="['Seller', 'Buyer', 'Net', 'Gross', 'Actions']"
+        [isAdd]="true"
+        (addHandler)="goToAdd()">
+        <tr *ngFor="let invoice of displayData">
+          <td>{{invoice.seller.company_name}}</td>
+          <td>{{invoice.buyer.company_name}}</td>
+          <td>{{invoice.totalNetto}}</td>
+          <td>{{invoice.totalBrutto}}</td>
+          <td>
+            <button mat-raised-button type="button" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="goToEdit(invoice.id)">
+              <i class="material-icons">create</i>
+            </button>
+            <button mat-raised-button type="button" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="goToDetails(invoice.id)">
+              <i class="material-icons">search</i>
+            </button>
+            <button mat-raised-button type="button" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="generatePdf(invoice)">
+              <i class="material-icons">download</i>
+            </button>
+            <button mat-raised-button type="button" class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="generatePdf(invoice)">
+              <i class="material-icons">close</i>
+            </button>
+          </td>
+        </tr>
+      </app-table>
+    </div>
+</div>
