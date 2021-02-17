@@ -1,0 +1,10 @@
+@import "../../../shared/shared.scss";
+
+.row-selectable {
+  cursor: pointer;
+  &:hover {
+    background-color: #1d2124;
+    color: #fffbd8;
+    opacity: 0.3;
+  }
+}

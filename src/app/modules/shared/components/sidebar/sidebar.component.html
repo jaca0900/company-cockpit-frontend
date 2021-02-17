@@ -1,7 +1,7 @@
 <div class="logo">
-    <div class="simple-text">
+    <a class="simple-text">
         Company Cockpit
-    </div>
+    </a>
 </div>
 <div class="sidebar-wrapper">
   <div *ngIf="isMobileMenu()">
@@ -53,10 +53,17 @@
   </div>
     <ul class="nav">
         <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-          <a class="nav-link" href="#" data-toggle="dropdown" aria-expanded="true" *ngIf="menuItem.children && menuItem.children.length">
+          <a class="nav-link" *ngIf="!(menuItem.children && menuItem.children.length)" [routerLink]="[menuItem.path]">
+            <i class="material-icons">{{menuItem.icon}}</i>
+            <p>{{menuItem.title}}</p>
+          </a>
+          <a role="button" class="nav-link" href="#navExpansion" data-toggle="collapse"
+             aria-expanded="true" *ngIf="menuItem.children && menuItem.children.length">
             <i class="material-icons">arrow_drop_down</i>
             <p>Material docs</p>
-            <ul class="dropdown-menu">
+          </a>
+          <div *ngIf="menuItem.children && menuItem.children.length" id="navExpansion" class="collapse">
+            <ul class="nav">
               <li *ngFor="let menuChild of menuItem.children">
                 <a class="nav-link" [routerLink]="[menuChild.path]">
                   <i class="material-icons">{{menuChild.icon}}</i>
@@ -64,11 +71,7 @@
                 </a>
               </li>
             </ul>
-          </a>
-          <a class="nav-link" *ngIf="!(menuItem.children && menuItem.children.length)" [routerLink]="[menuItem.path]">
-            <i class="material-icons">{{menuItem.icon}}</i>
-            <p>{{menuItem.title}}</p>
-          </a>
+          </div>
         </li>
     </ul>
 </div>

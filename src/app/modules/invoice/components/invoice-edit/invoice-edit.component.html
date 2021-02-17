@@ -1,204 +1,206 @@
-<form ngNativeValidate
-    (submit)="saveInvoice()">
-
-    <p-panel header="Invoice data">
-
-        <div class="ui-g">
-            <div class="ui-g-4 ui-md-4 no-padd-margin">
-                <div class="ui-g-12 ui-md-12 no-padd-margin">
-                    <label>Invoice number</label>
-                </div>
-                <input type="text" name="invoiceNumber" [(ngModel)]="invoice.invoiceNumber" pInputText>
-            </div>
-
-            <div class="ui-g-4 ui-md-4 no-padd-margin">
-                <div class="ui-g-12 ui-md-12 no-padd-margin">
-                    <label>Sell Date</label>
-                </div>
-                <p-calendar name="SellDate" [(ngModel)]="invoice.sellDate"></p-calendar>
-            </div>
-
-            <div class="ui-g-4 ui-md-4 no-padd-margin">
-                <div class="ui-g-12 ui-md-12 no-padd-margin">
-                    <label>Creation Date</label>
-                </div>
-                <p-calendar name="createDate" [(ngModel)]="invoice.creationDate"></p-calendar>
-            </div>
+<div class="container-fluid">
+  <form ngNativeValidate
+        (submit)="saveInvoice()">
+    <div class="card">
+      <div class="card-header card-header-primary row" style="padding: 5px;">
+        <div class="col-10">
+          <h3 class="card-title">Invoice Header</h3>
         </div>
-
-        <div class="ui-g">
-            <div class="ui-g-6 ui-md-6">
-                <p-panel [toggleable]="true">
-                    <p-header>
-                        <button type="button" [style]="" (click)="showSellerDialog()" pButton label="Select or enter below seller company"></button>
-                    </p-header>
-                    <div class="ui-g">
-                        <div class="ui-g-6 ui-md-6">
-                            <div class="ui-g-12 ui-md-12">
-                                <label>Nip</label>
-                            </div>
-                            <input type="text" name="sellerNip" [(ngModel)]="seller.nip" pInputText>
-                            <div class="ui-g-12 ui-md-12">
-                                <label>Name</label>
-                            </div>
-                            <input type="text" name="sellerName" [(ngModel)]="seller.company_name" pInputText>
-                        </div>
-                        <div class="ui-g-6 ui-md-6 no-padd-margin">
-                            <div class="ui-g-12 ui-md-12 no-padd-margin">
-                                <label>Address</label>
-                            </div>
-                            <textarea rows="5" cols="30" name="sellerAddress" [(ngModel)]="seller.address" pInputTextarea></textarea>
-                        </div>
-                    </div>
-                </p-panel>
-            </div>
-
-            <div class="ui-g-6 ui-md-6">
-                <p-panel [toggleable]="true">
-                    <p-header>
-                        <button type="button" [style]="" (click)="showBuyerDialog()" pButton label="Select or enter below Buyer company"></button>
-                    </p-header>
-                    <div class="ui-g">
-                        <div class="ui-g-6 ui-md-6">
-                            <div class="ui-g-12 ui-md-12">
-                                <label>Nip</label>
-                            </div>
-                            <input type="text" name="buyerNip" [(ngModel)]="buyer.nip" pInputText>
-                            <div class="ui-g-12 ui-md-12">
-                                <label>Name</label>
-                            </div>
-                            <input type="text" name="buyerName" [(ngModel)]="buyer.company_name" pInputText>
-                        </div>
-                        <div class="ui-g-6 ui-md-6 no-padd-margin">
-                            <div class="ui-g-12 ui-md-12 no-padd-margin">
-                                <label>Address</label>
-                            </div>
-                            <textarea rows="5" cols="30" name="buyerAddress" [(ngModel)]="buyer.address" pInputTextarea></textarea>
-                        </div>
-                    </div>
-                </p-panel>
-            </div>
+        <div class="col-2">
+          <a mat-raised-button *ngIf="!collapsableData.headerCollapse" class="btn btn-round btn-just-icon" data-toggle="collapse" href="#headerCollapse"
+             role="button" (click)="collapsableData.headerCollapse = !collapsableData.headerCollapse" style="float: right">
+            <i class="material-icons">add</i>
+          </a>
+          <a mat-raised-button *ngIf="collapsableData.headerCollapse" class="btn btn-round btn-just-icon" data-toggle="collapse" href="#headerCollapse"
+             role="button" (click)="collapsableData.headerCollapse = !collapsableData.headerCollapse" style="float: right">
+            <i class="material-icons">remove</i>
+          </a>
         </div>
-
-        <p-panel header="Invoice Contents" [toggleable]="true">
-            <div class="ui-g">
-                <div class="ui-g-12 ui-md-12 no-padding">
-                    <p-toolbar>
-                        <div class="ui-toolbar-group-left ui-g-10 ui-md-10">
-                            <div class="ui-g-3 ui-md-3 no-padd-margin">
-                                <div class="ui-g-12 ui-md-12 no-padd-margin">
-                                    <label>Product name</label>
-                                </div>
-                                <div class="ui-g-12 ui-md-12 no-padd-margin">
-                                    <input type="text" name="name" [(ngModel)]="invoiceProduct.product.name" pInputText>
-                                </div>
-                            </div>
-                            
-                            <div class="ui-g-3 ui-md-3 no-padd-margin">
-                                <div class="ui-g-12 ui-md-12 no-padd-margin">
-                                    <label>Unit price</label>
-                                </div>
-                                <div class="ui-g-12 ui-md-12 no-padd-margin">
-                                    <input type="number" name="unit price" [(ngModel)]="invoiceProduct.product.unitPrice" pInputText>
-                                </div>
-                            </div>
-
-                            <div class="ui-g-3 ui-md-3 no-padd-margin">
-                                <div class="ui-g-12 ui-md-12 no-padd-margin">
-                                    <label>Number of units</label>
-                                </div>
-                                <div class="ui-g-12 ui-md-12 no-padd-margin">
-                                    <input type="number" name="unit price" [(ngModel)]="invoiceProduct.units" pInputText>
-                                </div>
-                            </div>
-
-                            <div class="ui-g-3 ui-md-3 no-padd-margin">
-                                <div class="ui-g-12 ui-md-12 no-padd-margin">
-                                    <label>Vat percentage 0 if none</label>
-                                </div>
-                                <div class="ui-g-12 ui-md-12 no-padd-margin">
-                                    <input type="number" name="unit price" [(ngModel)]="invoiceProduct.product.vat" pInputText>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="ui-toolbar-group-right ui-g-2 ui-md-2">
-                            <button pButton type="button" label="Add Product" icon="pi pi-plus" (click)="addProduct()"></button>
-                        </div>
-                    </p-toolbar>
-
-                    <p-table [value]="invoiceProducts" class="common-table" [paginator]="true" [rows]="10">
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th>Product name</th>
-                                <th>Unit price</th>
-                                <th>Units</th>
-                                <th>Vat value</th>
-                                <th>Net</th>
-                                <th>Gross</th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-invoiceProduct>
-                            <tr>
-                                <td>{{invoiceProduct.product.name}}</td>
-                                <td>{{invoiceProduct.product.unit_price}}</td>
-                                <td>{{invoiceProduct.units}}</td>
-                                <td>{{invoiceProduct.product.vat * 100}} %</td>
-                                <td>{{invoiceProduct.product.unit_price * invoiceProduct.units}}</td>
-                                <td>{{invoiceProduct.product.unit_price * invoiceProduct.units * (1 + invoiceProduct.product.vat)}}</td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-                </div>
+      </div>
+      <div class="card-body">
+        <div class="collapse show container-fluid" id="headerCollapse">
+          <div class="row">
+            <div class="col-4">
+              <mat-form-field>
+                <input matInput placeholder="Invoice number" type="text" name="invoiceNumber"
+                       [(ngModel)]="invoice.invoiceNumber">
+              </mat-form-field>
             </div>
-        </p-panel>
 
-        
-        <p-panel header="Invoice Footer" [toggleable]="true">
-            <div class="ui-g">
-                <div class="ui-g-4 ui-md-4">
-                    <p-dropdown [options]="methods" name="paymentMethod" [(ngModel)]="invoice.paymentMethod" placeholder="select payment method" optionLabel="name"></p-dropdown>
-                </div>
-                <div class="ui-g-4 ui-md-4 no-padd-margin">
-                    <div class="ui-g-12 ui-md-12 no-padd-margin">
-                        <label>account number</label>
-                    </div>
-
-                    <input type="text" disabled="{{ invoice.paymentMethod.value != 'transfer' }}" name="accountNumber" [(ngModel)]="invoice.accountNumber" pInputText>
-                </div>
-                <div class="ui-g-2 ui-md-2">
-                <label>Payment Date</label>
-                </div>
-                <div class="ui-g-2 ui-md-2">
-                    <p-calendar name="payDate" [(ngModel)]="invoice.payDate"></p-calendar>
-                </div>
+            <div class="col-4">
+              <mat-form-field>
+                <mat-label>Sell Date</mat-label>
+                <input matInput [matDatepicker]="sellDatePicker" [value]="invoice.sellDate">
+                <mat-datepicker-toggle matSuffix [for]="sellDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #sellDatePicker></mat-datepicker>
+              </mat-form-field>
             </div>
-        </p-panel>
 
-        <button pButton type="submit" label="Save"></button>
-    </p-panel>
+            <div class="col-4">
+              <mat-form-field>
+                <mat-label>Creation Date</mat-label>
+                <input matInput [matDatepicker]="creationDatePicker" [value]="invoice.creationDate">
+                <mat-datepicker-toggle matSuffix [for]="creationDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #creationDatePicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <app-company-form
+                name="sellerForm"
+                [title]="'Seller company'"
+                [mode]="'create'"
+                [company]="seller"
+                [owned]="true"
+                [submitLabel]="'Store in DB'"
+                [isSeller]="true"
+                [selectCompany]="true"
+                (setCompany)="setCompany($event)"
+              ></app-company-form>
+            </div>
 
-    <p-dialog header="Select seller" [(visible)]="showSeller">
-        <p-table [value]="sellers" class="common-table" selectionMode="single" [(selection)]="seller" [paginator]="true" [rows]="10">
-            <ng-template pTemplate="body" let-seller>
-                <tr [pSelectableRow]="seller">
-                    <td>{{seller.company_name}}</td>
-                </tr>
-            </ng-template>
-        </p-table>
+            <div class="col-6">
+              <app-company-form
+                name="buyerForm"
+                [title]="'Buyer company'"
+                [mode]="'create'"
+                [company]="buyer"
+                [owned]="false"
+                [submitLabel]="'Store in DB'"
+                [selectCompany]="true"
+                (setCompany)="setCompany($event)"
+              ></app-company-form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        <button type="button" (click)="closeSellerDialog()" pButton label="save"></button>
-    </p-dialog>
+    <div class="card">
+      <div class="card-header card-header-primary row" style="padding: 5px;">
+        <div class="col-10">
+          <h3 class="card-title">Invoice Contents</h3>
+        </div>
+        <div class="col-2">
+          <a mat-raised-button *ngIf="!collapsableData.contentsCollapse" class="btn btn-round btn-just-icon" data-toggle="collapse" href="#contentsCollapse"
+             role="button" (click)="collapsableData.contentsCollapse = !collapsableData.contentsCollapse" style="float: right">
+            <i class="material-icons">add</i>
+          </a>
+          <a mat-raised-button *ngIf="collapsableData.contentsCollapse" class="btn btn-round btn-just-icon" data-toggle="collapse" href="#contentsCollapse"
+             role="button" (click)="collapsableData.contentsCollapse = !collapsableData.contentsCollapse" style="float: right">
+            <i class="material-icons">remove</i>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="collapse show container-fluid row" id="contentsCollapse">
+          <div class="col-8">
+            <app-table
+              [title]="'Invoice Products'"
+              [headers]="['Product name', 'Unit price', 'Units', 'Vat value', 'Net', 'Gross']"
+            >
+              <tr *ngFor="let invoiceProduct of invoiceProducts">
+                <td>{{invoiceProduct?.product?.name}}</td>
+                <td>{{invoiceProduct?.product?.unitPrice}}</td>
+                <td>{{invoiceProduct?.units}}</td>
+                <td>{{invoiceProduct?.product?.vat}}</td>
+                <td>{{invoiceProduct?.product?.unitPrice * invoiceProduct?.units}}</td>
+                <td>{{invoiceProduct?.product?.unitPrice * invoiceProduct?.units * (1 + invoiceProduct?.product?.vat)}}</td>
+              </tr>
+            </app-table>
+          </div>
+          <div class="col-4">
+            <div class="card">
+              <div class="card-header card-header-warning">
+                <div class="col-12">
+                  <h3 class="card-title">Add product</h3>
+                </div>
+              </div>
+              <div class="card-body container-fluid">
+                <mat-form-field>
+                  <input matInput placeholder="Product name" type="text" name="name" [(ngModel)]="invoiceProduct.product.name">
+                </mat-form-field>
 
-    <p-dialog header="Select buyer" [(visible)]="showBuyer">
-        <p-table [value]="buyers" class="common-table" selectionMode="single" [(selection)]="buyer" [paginator]="true" [rows]="10">
-            <ng-template pTemplate="body" let-buyer>
-                <tr [pSelectableRow]="buyer">
-                    <td>{{buyer.company_name}}</td>
-                </tr>
-            </ng-template>
-        </p-table>
+                <mat-form-field>
+                  <input matInput placeholder="Unit price" type="number" name="unit price" [(ngModel)]="invoiceProduct.product.unitPrice">
+                </mat-form-field>
 
-        <button type="button" (click)="closeBuyerDialog()" pButton label="save"></button>
-    </p-dialog>
-</form>
+                <mat-form-field>
+                  <input matInput placeholder="Number of units" type="number" name="units" [(ngModel)]="invoiceProduct.units">
+                </mat-form-field>
+
+                <mat-form-field>
+                  <input matInput placeholder="Vat percentage 0 if none" type="number" name="unit price" [(ngModel)]="invoiceProduct.product.vat">
+                </mat-form-field>
+
+                <button mat-raised-button type="button" class="btn btn-primary" (click)="addProduct()">Add Product</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header card-header-primary row" style="padding: 5px;">
+        <div class="col-10">
+          <h3 class="card-title">Invoice Footer</h3>
+        </div>
+        <div class="col-2">
+          <a mat-raised-button *ngIf="!collapsableData.foooterCollapse" class="btn btn-round btn-just-icon" data-toggle="collapse" href="#foooterCollapse"
+             role="button" (click)="collapsableData.foooterCollapse = !collapsableData.foooterCollapse" style="float: right">
+            <i class="material-icons">add</i>
+          </a>
+          <a mat-raised-button *ngIf="collapsableData.foooterCollapse" class="btn btn-round btn-just-icon" data-toggle="collapse" href="#foooterCollapse"
+             role="button" (click)="collapsableData.foooterCollapse = !collapsableData.foooterCollapse" style="float: right">
+            <i class="material-icons">remove</i>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="collapse show container-fluid row" id="foooterCollapse">
+          <div class="col-6">
+            <div class="dropdown row">
+              <div class="col-6">
+                <button href="#" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                  change payment method
+                  <b class="caret"></b>
+                </button>
+
+                <ul class="dropdown-menu">
+                  <li *ngFor="let method of methods">
+                    <a role="button" mat-button class="btn btn-white"
+                       (click)="invoice.paymentMethod = method.name">{{method.name}}</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-6">
+                <mat-form-field>
+                  <input matInput [disabled]="true" name="selectedMethod" placeholder="sellected method" [(ngModel)]="invoice.paymentMethod">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <mat-form-field>
+              <input matInput placeholder="account number" type="text"
+                     disabled="{{ invoice.paymentMethod != 'Transfer' }}" name="accountNumber"
+                     [(ngModel)]="invoice.accountNumber">
+            </mat-form-field>
+          </div>
+          <div class="col-3">
+            <mat-form-field>
+              <mat-label>Payment Date</mat-label>
+              <input matInput [matDatepicker]="PaymentDatePicker" [value]="invoice.payDate">
+              <mat-datepicker-toggle matSuffix [for]="PaymentDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #PaymentDatePicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button mat-raised-button class="btn btn-primary" type="submit">Save</button>
+  </form>
+</div>

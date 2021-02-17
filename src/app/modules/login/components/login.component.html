@@ -4,15 +4,16 @@
 
     <div class="container-fluid">
       <div class="col-4" style="horiz-align: center; margin: auto">
-        <mat-form-field class="example-full-width">
+        <mat-form-field >
           <input matInput placeholder="Username" type="text" name="login" [(ngModel)]="login">
         </mat-form-field>
 
-        <mat-form-field class="example-full-width">
+        <mat-form-field >
           <input matInput placeholder="Password" type="password" name="pass" [(ngModel)]="pass">
         </mat-form-field>
 
         <button mat-raised-button class="btn btn-info" style="float: right;" type="submit">Login</button>
+        <button mat-raised-button class="btn btn-info" style="float: right;" type="button" (click)="doRegister()">Register</button>
       </div>
     </div>
 </form>

@@ -3,6 +3,7 @@ import {UserProfileComponent} from './components/user-profile/user-profile.compo
 import {SharedModule} from '@shared/shared.module';
 import {UserRouter} from './user.router.';
 import {CompanyModule} from '@copmany/company.module';
+import {UserRegisterComponent} from './components/user-registration/user-register.component';
 
 @NgModule({
   imports: [
@@ -11,6 +12,6 @@ import {CompanyModule} from '@copmany/company.module';
     CompanyModule
   ],
   providers: [],
-  declarations: [UserProfileComponent]
+  declarations: [UserProfileComponent, UserRegisterComponent]
 })
 export class UserModule {}

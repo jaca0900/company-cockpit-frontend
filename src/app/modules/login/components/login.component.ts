@@ -24,6 +24,11 @@ export class LoginComponent implements OnInit {
     this.login = '';
     this.pass = '';
     this.status = 200;
+    StorageService.setItem('User', {})
+  }
+
+  doRegister() {
+    this.router.navigate(['/user-profile/register']);
   }
 
   doLogin() {

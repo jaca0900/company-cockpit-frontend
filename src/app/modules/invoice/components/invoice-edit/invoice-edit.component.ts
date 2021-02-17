@@ -4,6 +4,7 @@ import { CompanyService } from '../../../company/sevices/company.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { InvoiceService } from '../../services/invoice.service';
+import {NotificationService} from '@shared/services/notification.service';
 // import { of } from 'rxjs';
 // import { MessageService } from 'primeng/api';
 
@@ -24,6 +25,12 @@ export class InvoiceEditComponent implements OnInit {
     { name: 'Transfer', value: 'transfer' }
   ];
 
+  collapsableData = {
+    headerCollapse: true,
+    contentsCollapse: true,
+    foooterCollapse: true
+  }
+
   public sellers: ICompany[];
   public buyers: ICompany[];
 
@@ -33,8 +40,7 @@ export class InvoiceEditComponent implements OnInit {
   constructor(
     private companyService: CompanyService,
     private route: ActivatedRoute,
-    private invoiceService: InvoiceService,
-    private messageService) {}
+    private invoiceService: InvoiceService) {}
 
   ngOnInit() {
     this.invoiceProduct = {
@@ -88,7 +94,7 @@ export class InvoiceEditComponent implements OnInit {
         }
       },
       (err) => {
-        console.error(err);
+        NotificationService.showNotification('danger', 'Error', 'Error getting data.');
       });
 
     this.route.paramMap.pipe(
@@ -104,12 +110,27 @@ export class InvoiceEditComponent implements OnInit {
           this.invoice.payDate = new Date(this.invoice.payDate);
           this.invoice.sellDate = new Date(this.invoice.sellDate);
           this.invoice.creationDate = new Date(this.invoice.creationDate);
-          this.invoiceProducts = this.invoice.invoiceProducts;
-          this.seller = this.invoice.seller;
-          this.buyer = this.invoice.buyer;
+          this.invoiceProducts = this.invoice.invoiceProducts.map(({ product, ...ip }) => ({
+            ... ip,
+            product: {
+              ...product,
+              unitPrice: product.unit_price
+            }
+          }));
+
+          this.seller = {
+            ... this.invoice.seller,
+            companyName: this.invoice.seller.company_name
+          };
+
+          this.buyer = {
+            ... this.invoice.buyer,
+            companyName: this.invoice.buyer.company_name
+          };
         },
         (err) => {
           console.error(err);
+          NotificationService.showNotification('danger', 'Error', 'Error getting data.');
         });
   }
 
@@ -121,21 +142,21 @@ export class InvoiceEditComponent implements OnInit {
 
     this.invoiceService.saveInvoice(this.invoice)
     .subscribe((res) => {
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Success Message',
-        detail: 'Invoice saved'
-      });
+      NotificationService.showNotification('success', 'Success', 'Successfuly saved invoice.');
       console.log(res);
     },
     (error) => {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error Message',
-        detail: 'Error during invoice saving'
-      });
+      NotificationService.showNotification('danger', 'Error', 'Error saving invoice please try again later.');
       console.error(error);
     });
+  }
+
+  setCompany({type, company}: {
+    type: string,
+    company: ICompany
+  }) {
+
+    this[type] = company;
   }
 
   addProduct() {
@@ -175,21 +196,5 @@ export class InvoiceEditComponent implements OnInit {
     } else {
       alert('Product name duplicated');
     }
-  }
-
-  showSellerDialog() {
-    this.showSeller = true;
-  }
-
-  closeSellerDialog() {
-    this.showSeller = false;
-  }
-
-  showBuyerDialog() {
-    this.showBuyer = true;
-  }
-
-  closeBuyerDialog() {
-    this.showBuyer = false;
   }
 }

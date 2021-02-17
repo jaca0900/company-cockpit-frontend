@@ -22,7 +22,7 @@ export class AuthService {
   ) { }
 
   login(username: string, pass: string): Promise<{ [key: string]: any }> {
-    return this.http.post<{ [key: string]: any }>(`${environment.apiAddress}/user/login`,{
+    return this.http.post<{ [key: string]: any }>(`${environment.apiAddress}/user/login`, {
         login: username,
         password: pass
       }).toPromise()
@@ -43,5 +43,13 @@ export class AuthService {
     StorageService.removeItem('user');
     this.isLoggedIn.next(false);
     this.router.navigate([CONSTANTS.MAIN_ROUTES.LOGIN]);
+  }
+
+  register(user) {
+    return this.http.post<{ [key: string]: any }>(`${environment.apiAddress}/user/register`, user);
+  }
+
+  updateUser(id, user) {
+    return this.http.put<{ [key: string]: any }>(`${environment.apiAddress}/user/${id}`, user);
   }
 }

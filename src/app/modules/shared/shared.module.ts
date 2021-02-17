@@ -10,13 +10,18 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {TableComponent} from '@shared/components/table/table.component';
+import {SidebarComponent} from '@shared/components/sidebar/sidebar.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
     TypeofPipe,
-    TableComponent
+    TableComponent,
+    SidebarComponent
   ],
-  imports: [],
+  imports: [
+    RouterModule
+  ],
   providers: [],
   bootstrap: [],
   exports: [
@@ -32,6 +37,7 @@ import {TableComponent} from '@shared/components/table/table.component';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    SidebarComponent
   ]
 })
 export class SharedModule {}

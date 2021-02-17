@@ -24,7 +24,7 @@ export class CompanyService {
 
     console.log('save to ', env.apiAddress);
 
-    return this.http.post(`${env.apiAddress}/company/user/${user.id}`, company)
+    return this.http.post<[[any], any]>(`${env.apiAddress}/company/user/${user.id}`, company)
   }
 
   getCompanyById(companyId: string) {
@@ -33,5 +33,9 @@ export class CompanyService {
 
   updateContractor(company: ICompany) {
     return this.http.put(`${env.apiAddress}/company/${company.id}`, company)
+  }
+
+  removeCompany(companyId: number) {
+    return this.http.delete(`${env.apiAddress}/company/${companyId}`);
   }
 }

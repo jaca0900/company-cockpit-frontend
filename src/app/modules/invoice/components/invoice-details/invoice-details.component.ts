@@ -4,9 +4,12 @@ import { CompanyService } from '../../../company/sevices/company.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { InvoiceService } from '../../services/invoice.service';
-// import pdfMake from 'pdfmake';
-// import pdfFonts from 'pdfmake/build/vfs_fonts';
-// pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import pdfMake from 'pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+import {PdfConverterService} from '../../services/pdf-converter.service';
+import * as moment from 'moment';
+import {NotificationService} from '@shared/services/notification.service';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-invoice-details',
@@ -24,6 +27,12 @@ export class InvoiceDetailsComponent implements OnInit {
     { name: 'Cash', value: 'cash' },
     { name: 'Transfer', value: 'transfer' }
   ];
+
+  collapsableData = {
+    headerCollapse: true,
+    contentsCollapse: true,
+    foooterCollapse: true
+  }
 
   public sellers: ICompany[];
   public buyers: ICompany[];
@@ -83,23 +92,37 @@ export class InvoiceDetailsComponent implements OnInit {
       .subscribe(
         (invoice) => {
           this.invoice = invoice[0];
+          this.invoice.paymentMethod = this.methods.find((method) => method.value === this.invoice.paymentMethod);
           this.invoice.payDate = new Date(this.invoice.payDate);
           this.invoice.sellDate = new Date(this.invoice.sellDate);
           this.invoice.creationDate = new Date(this.invoice.creationDate);
-          this.invoiceProducts = this.invoice.invoiceProducts;
-          this.seller = this.invoice.seller;
-          this.buyer = this.invoice.buyer;
-          console.log(this.invoice);
+          this.invoiceProducts = this.invoice.invoiceProducts.map(({ product, ...ip }) => ({
+            ... ip,
+            product: {
+              ...product,
+              unitPrice: product.unit_price
+            }
+          }));
+
+          this.seller = {
+            ... this.invoice.seller,
+            companyName: this.invoice.seller.company_name
+          };
+
+          this.buyer = {
+            ... this.invoice.buyer,
+            companyName: this.invoice.buyer.company_name
+          };
         },
         (err) => {
-          console.log('Hmmmm', err);
+          NotificationService.showNotification('danger', 'Error', 'Error getting invoice data.');
+          console.error(err);
         });
   }
 
   public generatePdf() {
-    const documentDefinition = { content: 'This is an sample PDF printed with pdfMake' };
-    // const pdf = pdfMake.createPdf(documentDefinition);
-    // console.log(pdf);
-    // pdf.download();
+    const pdf = PdfConverterService.invoiceToPDF(this.invoice);
+    console.log(pdf);
+    pdf.download(`invoice-${moment(this.invoice.sellDate).format('MM/DD/YYYY')}`);
   }
 }

@@ -4,6 +4,7 @@ import { CompanyService } from '../../../company/sevices/company.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { InvoiceService } from '../../services/invoice.service';
+import {NotificationService} from '@shared/services/notification.service';
 
 @Component({
   selector: 'app-invoice-create',
@@ -21,6 +22,12 @@ export class InvoiceCreateComponent implements OnInit {
     { name: 'Cash', value: 'cash' },
     { name: 'Transfer', value: 'transfer' }
   ]
+
+  collapsableData = {
+    headerCollapse: true,
+    contentsCollapse: true,
+    foooterCollapse: true
+  }
 
   public sellers: ICompany[];
   public buyers: ICompany[];
@@ -80,6 +87,7 @@ export class InvoiceCreateComponent implements OnInit {
         }
       },
       (err) => {
+        NotificationService.showNotification('danger', 'Error', 'Error getting data for invoice creation.');
         console.error(err);
       })
 
@@ -96,7 +104,7 @@ export class InvoiceCreateComponent implements OnInit {
     const date = new Date();
 
     this.invoice = {
-      paymentMethod: { name: 'Transfer', value: 'transfer' },
+      paymentMethod: 'Transfer',
       accountNumber: '',
       invoiceNumber: date.getTime(),
       sellDate: date,
@@ -112,9 +120,14 @@ export class InvoiceCreateComponent implements OnInit {
     this.invoice.paymentMethod = this.invoice.paymentMethod.value;
 
     this.invoiceService.saveInvoice(this.invoice)
-    .subscribe((res) => {
-      console.log(res);
-    });
+      .subscribe((res) => {
+          NotificationService.showNotification('success', 'Success', 'Successfuly saved invoice.');
+          console.log(res);
+        },
+        (error) => {
+          NotificationService.showNotification('danger', 'Error', 'Error saving invoice please try again later.');
+          console.error(error);
+        });
     console.log(this.invoice);
   }
 
@@ -157,19 +170,11 @@ export class InvoiceCreateComponent implements OnInit {
     }
   }
 
-  showSellerDialog() {
-    this.showSeller = true;
-  }
+  setCompany({type, company}: {
+    type: string,
+    company: ICompany
+  }) {
 
-  closeSellerDialog() {
-    this.showSeller = false;
-  }
-
-  showBuyerDialog() {
-    this.showBuyer = true;
-  }
-
-  closeBuyerDialog() {
-    this.showBuyer = false;
+    this[type] = company;
   }
 }

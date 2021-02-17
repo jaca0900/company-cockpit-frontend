@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
 // import { remote } from 'electron';
 
 @Component({
@@ -7,14 +7,14 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./tablecomponent.scss']
 })
 export class TableComponent implements OnInit {
-  // // TODO: add company model
-  // public userCompanies: ICompany[]
-
   @Input()
   displayKeys: string[];
 
   @Input()
   dataSet: any[];
+
+  @Input()
+  dataObservable: any;
 
   @Input()
   headers: string[];

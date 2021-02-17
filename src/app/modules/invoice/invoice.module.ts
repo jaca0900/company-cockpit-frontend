@@ -17,6 +17,8 @@ import { InvoiceListComponent } from './components/invoice-list/invoice-list.com
 
 import { InvoiceEditComponent } from './components/invoice-edit/invoice-edit.component';
 import { InvoiceDetailsComponent } from './components/invoice-details/invoice-details.component';
+import {CompanyModule} from '@copmany/company.module';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -26,19 +28,21 @@ import { InvoiceDetailsComponent } from './components/invoice-details/invoice-de
       InvoiceEditComponent,
       InvoiceDetailsComponent
     ],
-    imports: [
-      CommonModule,
-      InvoiceRouter,
-      SharedModule,
-      // ButtonModule,
-      // TableModule,
-      // InputTextareaModule,
-      // ToolbarModule,
-      // DropdownModule,
-      // CalendarModule,
-      // DialogModule,
-      // PanelModule
-    ],
+  imports: [
+    CommonModule,
+    InvoiceRouter,
+    SharedModule,
+    CompanyModule,
+    MatDatepickerModule
+    // ButtonModule,
+    // TableModule,
+    // InputTextareaModule,
+    // ToolbarModule,
+    // DropdownModule,
+    // CalendarModule,
+    // DialogModule,
+    // PanelModule
+  ],
     exports: [
       InvoiceCreateComponent,
       InvoiceListComponent,

@@ -47,11 +47,7 @@ export class CompanyDetailsComponent extends GenericListComponent<{ [key: string
         (invoices) => {
           this.all = this.total = invoices;
           this.viewSimple();
-        },
-        (err) => {
-          
-        }
-      )
+        })
     }, () => {
       console.error('Shit is real');
     });
