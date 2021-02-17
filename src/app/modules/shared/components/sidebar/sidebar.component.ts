@@ -14,16 +14,6 @@ export const ROUTES: RouteInfo[] = [
   {path: '/invoice', title: 'Invoices', icon: 'description', class: ''},
   {path: '/company', title: 'Contractors', icon: 'contacts', class: ''},
   {path: '/user-profile', title: 'User Profile', icon: 'person', class: ''},
-  {
-    path: '/dashboard', title: 'Dashboard', icon: 'dashboard', class: '',
-    children: [
-      {path: '/dashboard/table-list', title: 'Table List', icon: 'content_paste', class: ''},
-      {path: '/dashboard/typography', title: 'Typography', icon: 'library_books', class: ''},
-      {path: '/dashboard/icons', title: 'Icons', icon: 'bubble_chart', class: ''},
-      {path: '/dashboard/maps', title: 'Maps', icon: 'location_on', class: ''},
-      {path: '/dashboard/notifications', title: 'Notifications', icon: 'notifications', class: ''}
-    ]
-  },
 ];
 
 @Component({
