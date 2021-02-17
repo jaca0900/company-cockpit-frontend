@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'home',  redirectTo: '/invoice' },
   // TODO Add a dashboard with some fun stuff canActivate: [AuthGuard], loadChildren: './modules/home/home.module#HomeModule'},
   { path: 'company', canActivate: [AuthGuard], loadChildren: './modules/company/company.module#CompanyModule'},
-  { path: 'invoice', loadChildren: './modules/invoice/invoice.module#InvoiceModule'}  // canActivate: [AuthGuard]
+  { path: 'invoice', canActivate: [AuthGuard], loadChildren: './modules/invoice/invoice.module#InvoiceModule'}  // canActivate: [AuthGuard]
 ];
 
 @NgModule({
