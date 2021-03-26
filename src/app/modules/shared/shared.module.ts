@@ -12,12 +12,14 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {TableComponent} from '@shared/components/table/table.component';
 import {SidebarComponent} from '@shared/components/sidebar/sidebar.component';
 import {RouterModule} from '@angular/router';
+import {AppSpinnerComponent} from '@shared/components/app-spiner/app-spinner.component';
 
 @NgModule({
   declarations: [
     TypeofPipe,
     TableComponent,
-    SidebarComponent
+    SidebarComponent,
+    AppSpinnerComponent
   ],
   imports: [
     RouterModule
@@ -37,7 +39,8 @@ import {RouterModule} from '@angular/router';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    SidebarComponent
+    SidebarComponent,
+    AppSpinnerComponent
   ]
 })
 export class SharedModule {}
